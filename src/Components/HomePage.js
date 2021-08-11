@@ -30,6 +30,7 @@ const HomePage = () => {
                     <p>Generate your list of cocktails</p>
                 </section>
             </div>
+            <button className="borderman btn-border">Get Started</button>
         </div>
     )
 }
