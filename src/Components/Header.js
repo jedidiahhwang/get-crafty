@@ -1,6 +1,6 @@
 import React from "react";
 
-import "../SASS/_appbar.scss";
+import "../SASS/_header.scss";
 
 const Header = () => {
 

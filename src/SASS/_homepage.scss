@@ -2,35 +2,53 @@
 
 #home-page {
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
     width: 100%;
 
-    #background-image {
-        position: absolute;
-        height: 100%;
-        width: 100%;
-        object-fit: fill;
+    .home-page {
+        height: 100vh;
+        width: 50%;
+        // background-color: black;
     }
 
-    #welcome-box {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        position: relative;
-        height: 30vh;
-        width: 50vw;
-        font-size: 2.5vw;
+    #right-side{
 
-        h1, h3 {
-            color: #FFFFFF;
-            font-family: 'Federo', sans-serif;
-            margin: .1em; // Play with the margins using em and pixels
+        #background-image {
+            position: relative;
+            height: 100%;
+            width: 100%;
+            object-fit: fill;
         }
     }
+
+    #left-side {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: black;
+
+        #welcome-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            height: 30vh;
+            width: 50vw;
+            font-size: 2.5vw;
+    
+            h1, h3 {
+                color: #FFFFFF;
+                font-family: 'Federo', sans-serif;
+                margin: .1em; // Play with the margins using em and pixels
+            }
+        }
+    }
+
+    
 
     #steps-container {
         display: flex;
