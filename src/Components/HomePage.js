@@ -7,34 +7,23 @@ const HomePage = () => {
 
     return ( 
         <div id="home-page">
-            <section class="home-page" id="left-side">
-                <div id="welcome-box">
-                    <h1>Welcome to Get Crafty</h1>
-                    <h3>Your personal bartender</h3>
-                </div>
-                <div id="steps-container">
-                    <section className="steps-boxes">
-                        <h2>Step 1</h2>
-                        <p>Select your base liquor</p>
-                    </section>
-                    <section className="steps-boxes">
-                        <h2>Step 2</h2>
-                        <p>Add additional flavoring and ingredients</p>
-                    </section>
-                    <section className="steps-boxes">
-                        <h2>Step 3</h2>
-                        <p>Generate your list of cocktails</p>
-                    </section>
-                </div>
-                <button className="borderman btn-border">Get Started</button>
-            </section>
-            <section class="home-page right" id="right-side">
                 <img
                     id="background-image"
                     src={backgroundImage}
                     alt="Bar photo from Unsplash"
                 />
-            </section>
+                <div id="welcome-box">
+                    <h1>- Welcome to Get Crafty -</h1>
+                    <h3>Your personal bartender</h3>
+                </div>
+                <div id="directions-container">
+                    <p className="intro-text">
+                        Get Crafty is a tool built to solve your cocktail craving needs.<br></br>
+                        Simply select a base liquor as well as any additional ingredients<br></br>
+                        and Get Crafty will generate a list of potential drinks to make!<br></br>
+                    </p>
+                </div>
+                <div class="pos down-arrow"></div>
         </div>
     )
 }

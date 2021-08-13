@@ -1,67 +1,55 @@
-@import "variables/borderman.scss";
+@import "variables/downarrow.scss";
 
 #home-page {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
     width: 100%;
 
-    .home-page {
-        height: 100vh;
-        width: 50%;
-        // background-color: black;
+    #background-image {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        object-fit: fill;
+        filter: blur(3px);
+        z-index: -1;
     }
 
-    #right-side{
-
-        #background-image {
-            position: relative;
-            height: 100%;
-            width: 100%;
-            object-fit: fill;
-        }
-    }
-
-    #left-side {
+    #welcome-box {
         display: flex;
         flex-direction: column;
-        justify-content: center;
         align-items: center;
+        justify-content: center;
+        position: relative;
+        height: 20vh;
+        width: 60vw;
+        font-size: 2.5vw;
         background-color: black;
+        background: transparent;
 
-        #welcome-box {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            height: 30vh;
-            width: 50vw;
-            font-size: 2.5vw;
-    
-            h1, h3 {
-                color: #FFFFFF;
-                font-family: 'Federo', sans-serif;
-                margin: .1em; // Play with the margins using em and pixels
-            }
+        h1, h3 {
+            color: #FFFFFF;
+            font-family: 'Federo', sans-serif;
+            margin: .05em; // Play with the margins using em and pixels
         }
     }
 
-    
-
-    #steps-container {
+    #directions-container {
         display: flex;
         align-items: center;
         justify-content: space-around;
         position: relative;
-        height: 20vh;
+        height: 10vh;
         width: 100%;
 
-        h2, p {
+        .intro-text {
             color: #FFFFFF;
+            // -webkit-text-stroke: .1px rgb(0, 0, 0);
             font-family: 'Federo', sans-serif;
-            margin: .1em; // Play with the margins using em and pixels
+            border: black;
         }
     }
-}
+    
+} 
