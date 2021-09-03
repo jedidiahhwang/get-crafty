@@ -13,20 +13,33 @@ const CocktailsPage = () => {
             url: "https://www.thecocktaildb.com/api/json/v1/1/random.php",
             method: "GET"
         }).then(res => {
+            /* 
+                Assign the data to variables for easier access (individual things to render):
+                    - drinkImage stores the image string in preview format.
+                    - drinkName stores the name of the drink.
+                    - drinkObject stores the whole drink to iterate upon for ingredients.
+            */
             const drinkImage = `${res.data.drinks[0].strDrinkThumb}/preview`;
             const drinkName = `${res.data.drinks[0].strDrink}`;
-            // for(let prop in res.data.drinks[0]) {
-            //     if(prop.includes("strIngredient")) {
+            const drinkObject = res.data.drinks[0];
+            console.log(drinkObject);
 
-            //     }
-            // }
+            // Initialize an empty array to push ingredients to. You can then .map() and render.
+            const drinkIngredients = [];
+            for(let prop in drinkObject) {
+                if(prop.startsWith("strIngredient") && drinkObject[prop]) {
+                    drinkIngredients.push(drinkObject[prop]);
+                    console.log(drinkIngredients);
+                }
+
+            }
+
+            // Assign hooks
             setDrink(drinkImage);
             setName(drinkName);
-            // setIngredients(drinkIngredients);
+            setIngredients(drinkIngredients);
         })
     }, []) 
-
-    const testArr = ["Hello", "I", "Like", "Cheese"];
 
     return (
         <div id="cocktails-page">
@@ -39,11 +52,11 @@ const CocktailsPage = () => {
                     alt="Random photo from CocktailDB"
                 />
                 <ul>
-                    {
-                        testArr.map(function(element, index) {
+                    {ingredients.length > 0 ?
+                        ingredients.map(function(element, index) {
                             return <p key={index}>{element}</p>
                         })
-                    }
+                    : null}
                 </ul>
 
             </div>
