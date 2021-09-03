@@ -15,19 +15,18 @@ const CocktailsPage = () => {
         }).then(res => {
             const drinkImage = `${res.data.drinks[0].strDrinkThumb}/preview`;
             const drinkName = `${res.data.drinks[0].strDrink}`;
-            const drinkIngredients = `${res.data.drinks[0].strIngredient1}`;
             // for(let prop in res.data.drinks[0]) {
             //     if(prop.includes("strIngredient")) {
-            //         console.log(res.data.drinks[0].prop)
-            //         drinkIngredients.push(res.data.drinks[0].prop);
+
             //     }
             // }
             setDrink(drinkImage);
             setName(drinkName);
-            setIngredients(drinkIngredients);
-            console.log(drinkIngredients)
+            // setIngredients(drinkIngredients);
         })
     }, []) 
+
+    const testArr = ["Hello", "I", "Like", "Cheese"];
 
     return (
         <div id="cocktails-page">
@@ -39,9 +38,14 @@ const CocktailsPage = () => {
                     src={drink}
                     alt="Random photo from CocktailDB"
                 />
-                {ingredients.length > 0 ? 
-                    <h5>{ingredients}</h5>
-                : null}
+                <ul>
+                    {
+                        testArr.map(function(element, index) {
+                            return <p key={index}>{element}</p>
+                        })
+                    }
+                </ul>
+
             </div>
         </div>
     )
