@@ -1,5 +1,6 @@
 #cocktails-page {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
@@ -11,5 +12,15 @@
         align-items: center;
         height: 100vh;
         width: 100%; 
+
+        #drink-info-box {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+
+            section {
+                width: 10vw;
+            }
+        }
     }
 }

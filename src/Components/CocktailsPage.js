@@ -1,12 +1,15 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios";
 
+import "../SASS/_cocktailspage.scss";
 
 const CocktailsPage = () => {
 
     const [drink, setDrink] = useState("");
     const [name, setName] = useState("");
     const [ingredients, setIngredients] = useState([]);
+    const [measurements, setMeasurements] = useState([]);
+    const [instructions, setInstructions] = useState("");
 
     useEffect(() => {
         axios({
@@ -26,18 +29,23 @@ const CocktailsPage = () => {
 
             // Initialize an empty array to push ingredients to. You can then .map() and render.
             const drinkIngredients = [];
+            const drinkMeasurements = [];
             for(let prop in drinkObject) {
                 if(prop.startsWith("strIngredient") && drinkObject[prop]) {
                     drinkIngredients.push(drinkObject[prop]);
-                    console.log(drinkIngredients);
+                } else if(prop.startsWith("strMeasure") && drinkObject[prop]) {
+                    drinkMeasurements.push(drinkObject[prop]);
                 }
-
+                if(prop === "strInstructions") {
+                    setInstructions(drinkObject[prop]);
+                }
             }
 
             // Assign hooks
             setDrink(drinkImage);
             setName(drinkName);
             setIngredients(drinkIngredients);
+            setMeasurements(drinkMeasurements);
         })
     }, []) 
 
@@ -51,14 +59,25 @@ const CocktailsPage = () => {
                     src={drink}
                     alt="Random photo from CocktailDB"
                 />
-                <ul>
-                    {ingredients.length > 0 ?
-                        ingredients.map(function(element, index) {
-                            return <p key={index}>{element}</p>
-                        })
-                    : null}
-                </ul>
-
+                <section id="drink-info-box">
+                    <section>
+                        {ingredients.length > 0 ?
+                            ingredients.map(function(element, index) {
+                                return <p key={index}>{element}</p>
+                            })
+                        : null}
+                    </section>
+                    <section>
+                        {measurements.length > 0 ?
+                            measurements.map(function(element, index) {
+                                return <p key={index}>{element}</p>
+                            })
+                        : null}
+                    </section>
+                    <section>
+                        <p>{instructions}</p>
+                    </section>
+                </section>
             </div>
         </div>
     )
