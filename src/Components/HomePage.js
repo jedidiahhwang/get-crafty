@@ -7,18 +7,13 @@ const HomePage = () => {
 
     return ( 
         <div id="home-page">
-                {/* <img
-                    id="background-image"
-                    src={backgroundImage}
-                    alt="Bar photo from Unsplash"
-                /> */}
                 <div id="welcome-box">
                     <h1>- Welcome to Get Crafty -</h1>
                     <h3>Your personal bartender</h3>
                 </div>
                 <div id="buttons-container">
-                    <button>Login</button>
-                    <button>Register</button>
+                    <button class="reflective">Login</button>
+                    <button class="reflective">Register</button>
                 </div>
         </div>
     )
