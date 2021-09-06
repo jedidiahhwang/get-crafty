@@ -1,22 +1,16 @@
-@import "variables/downarrow.scss";
-
 #home-page {
     display: flex;
     flex-direction: column;
+    background-image: url(../images/cocktail1.jpg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-color: black;
     justify-content: center;
     align-items: center;
     height: 100vh;
     width: 100%;
-
-    #background-image {
-        position: absolute;
-        background-attachment: fixed;
-        height: 100%;
-        width: 100%;
-        object-fit: fill;
-        filter: blur(3px);
-        z-index: -1;
-    }
 
     #welcome-box {
         display: flex;
@@ -27,30 +21,24 @@
         height: 20vh;
         width: 60vw;
         font-size: 2.5vw;
-        background-color: black;
+        font-weight: bolder;
         background: transparent;
 
         h1, h3 {
             color: #FFFFFF;
             font-family: 'Federo', sans-serif;
+            font-weight: bolder;
             margin: .05em; // Play with the margins using em and pixels
         }
     }
 
-    #directions-container {
+    #buttons-container {
         display: flex;
         align-items: center;
         justify-content: space-around;
         position: relative;
         height: 10vh;
         width: 100%;
-
-        .intro-text {
-            color: #FFFFFF;
-            -webkit-text-stroke: .1px rgb(0, 0, 0);
-            font-family: 'Federo', sans-serif;
-            border: black;
-        }
     }
     
 } 
