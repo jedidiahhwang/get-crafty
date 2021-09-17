@@ -1,0 +1,21 @@
+#about-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 85vh;
+    width: 100%;
+    background-color: black;
+    background-image: url(../images/cocktail5.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    #about-box {
+        height: 75%;
+        width: 50%;
+
+        h2, p {
+            color: white;
+        }
+    }
+}

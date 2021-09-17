@@ -7,7 +7,7 @@ import AboutPage from "./Components/AboutPage.js";
 function App() {
   return (
     <div className="App">
-      {/* <Header /> */}
+      <Header />
       <HomePage />
       <AboutPage />
     </div>

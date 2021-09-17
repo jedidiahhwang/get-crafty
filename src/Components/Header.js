@@ -1,17 +1,14 @@
 import React from "react";
+import Headroom from "react-headroom";
 
 import "../SASS/_header.scss";
 
 const Header = () => {
 
     return (
-        <header id="main-header">
-            <h3>Get Crafty</h3>
-            <h3>Create</h3>
-            <h3>About</h3>
-            <h3>Login</h3>
-            <h3>Register</h3>
-        </header>
+        <Headroom id="headroom">
+            <h3>Hello there</h3>
+        </Headroom>
     )
 }
 
