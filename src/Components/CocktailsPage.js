@@ -1,5 +1,6 @@
 import React, {useEffect, useState, Suspense} from "react";
 import axios from "axios";
+import SyncLoader from "react-spinners/SyncLoader";
 
 import "../SASS/_cocktailspage.scss";
 
@@ -13,9 +14,12 @@ const CocktailsPage = () => {
     const [ingredients, setIngredients] = useState([]);
     const [measurements, setMeasurements] = useState([]);
     const [instructions, setInstructions] = useState("");
+    let [loading, setLoading] = useState(true);
+    let [color, setColor] = useState("#ffffff");
 
     async function randomCocktail () {
         setStatus("hidden");
+        setLoading(true);
 
         await axios({
             url: "https://www.thecocktaildb.com/api/json/v1/1/random.php",
@@ -53,8 +57,9 @@ const CocktailsPage = () => {
 
             const timer = setTimeout(() => {
                 console.log("Rendered information after 3 seconds");
+                setLoading(false);
                 setStatus("not-hidden");
-            }, 3000);
+            }, 1500);
         })
     }
 
@@ -69,6 +74,7 @@ const CocktailsPage = () => {
                 <button onClick={randomCocktail}>
                     Generate
                 </button>
+                <SyncLoader color={color} loading={loading} width={300} height={10} margin={5} />
                 <Suspense fallback={<div>Loading</div>}>
                     <RandomCocktails
                         image={image}
