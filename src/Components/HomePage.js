@@ -11,10 +11,7 @@ const HomePage = () => {
                     <h1>- Welcome to Get Crafty -</h1>
                     <h3>Your personal bartender</h3>
                 </div>
-                <div id="buttons-container">
-                    <button class="reflective">Login</button>
-                    <button class="reflective">Register</button>
-                </div>
+                <div class="pos down-arrow"></div>
         </div>
     )
 }

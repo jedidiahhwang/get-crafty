@@ -5,10 +5,12 @@
     height: 85vh;
     width: 100%;
     background-color: black;
-    background-image: url(../images/cocktail5.jpg);
-    background-size: cover;
+    background-image: url(../images/bar-background1.jpg);
+    background-size: contain;
     background-repeat: no-repeat;
+    background-attachment: fixed;
     background-position: center;
+    background-color: black;
 
     #about-box {
         height: 75%;

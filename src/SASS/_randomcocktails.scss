@@ -1,0 +1,15 @@
+#not-hidden {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 50%;
+    width: 75%;
+
+    #instructions-box {
+        overflow: scroll;
+    }
+}
+
+#hidden {
+    display: none;
+}

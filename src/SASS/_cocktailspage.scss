@@ -3,8 +3,16 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: black;
     height: 100vh;
     width: 100%;
+
+    h2 {
+        color: white;
+        color: #FFFFFF;
+        font-family: 'Federo', sans-serif;
+        font-weight: bolder;
+    }
 
     #random-box {
         display: flex;
@@ -21,6 +29,13 @@
             section {
                 width: 10vw;
             }
+        }
+
+        p {
+            color: white;
+            color: #FFFFFF;
+            font-family: 'Federo', sans-serif;
+            font-weight: bolder;
         }
     }
 }

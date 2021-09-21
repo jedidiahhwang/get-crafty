@@ -1,18 +1,23 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, Suspense} from "react";
 import axios from "axios";
 
 import "../SASS/_cocktailspage.scss";
 
+const RandomCocktails = React.lazy(() => import("./SubComponents/RandomCocktails.js"));
+
 const CocktailsPage = () => {
 
-    const [drink, setDrink] = useState("");
+    const [status, setStatus] = useState(false);
+    const [image, setImage] = useState("");
     const [name, setName] = useState("");
     const [ingredients, setIngredients] = useState([]);
     const [measurements, setMeasurements] = useState([]);
     const [instructions, setInstructions] = useState("");
 
-    useEffect(() => {
-        axios({
+    async function randomCocktail () {
+        setStatus("hidden");
+
+        await axios({
             url: "https://www.thecocktaildb.com/api/json/v1/1/random.php",
             method: "GET"
         }).then(res => {
@@ -25,7 +30,6 @@ const CocktailsPage = () => {
             const drinkImage = `${res.data.drinks[0].strDrinkThumb}/preview`;
             const drinkName = `${res.data.drinks[0].strDrink}`;
             const drinkObject = res.data.drinks[0];
-            console.log(drinkObject);
 
             // Initialize an empty array to push ingredients to. You can then .map() and render.
             const drinkIngredients = [];
@@ -42,42 +46,39 @@ const CocktailsPage = () => {
             }
 
             // Assign hooks
-            setDrink(drinkImage);
+            setImage(drinkImage);
             setName(drinkName);
             setIngredients(drinkIngredients);
             setMeasurements(drinkMeasurements);
+
+            const timer = setTimeout(() => {
+                console.log("Rendered information after 3 seconds");
+                setStatus("not-hidden");
+            }, 3000);
         })
+    }
+
+    useEffect(() => {
+        randomCocktail();
     }, []) 
 
     return (
         <div id="cocktails-page">
             <h2>Feeling lucky? Here's a random cocktail.</h2>
             <div id="random-box">
-                <h4>{name}</h4>
-                <img
-                    id="cocktail-image"
-                    src={drink}
-                    alt="Random photo from CocktailDB"
-                />
-                <section id="drink-info-box">
-                    <section>
-                        {ingredients.length > 0 ?
-                            ingredients.map(function(element, index) {
-                                return <p key={index}>{element}</p>
-                            })
-                        : null}
-                    </section>
-                    <section>
-                        {measurements.length > 0 ?
-                            measurements.map(function(element, index) {
-                                return <p key={index}>{element}</p>
-                            })
-                        : null}
-                    </section>
-                    <section>
-                        <p>{instructions}</p>
-                    </section>
-                </section>
+                <button onClick={randomCocktail}>
+                    Generate
+                </button>
+                <Suspense fallback={<div>Loading</div>}>
+                    <RandomCocktails
+                        image={image}
+                        name={name}
+                        ingredients={ingredients}
+                        measurements={measurements}
+                        instructions={instructions}
+                        status={status}
+                    />
+                </Suspense>
             </div>
         </div>
     )
