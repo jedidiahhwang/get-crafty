@@ -2,8 +2,33 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    height: 50%;
-    width: 75%;
+    height: 25vh;
+    width: 100%;
+
+        #drink-info-box {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        height: 100%;
+        width: 100%;
+
+        section {
+            width: 10vw;
+        }
+
+        #instructions-box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 75%;
+            width: 25%;
+        }
+
+        .drink-info-headers {
+            color: white;
+        }
+    }
 
     #instructions-box {
         overflow: scroll;

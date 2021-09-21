@@ -69,22 +69,24 @@ const CocktailsPage = () => {
 
     return (
         <div id="cocktails-page">
-            <h2>Feeling lucky? Here's a random cocktail.</h2>
+            <h2 className="subheaders">Feeling lucky? Here's a random cocktail.</h2>
             <div id="random-box">
                 <button onClick={randomCocktail}>
                     Generate
                 </button>
-                <SyncLoader color={color} loading={loading} width={300} height={10} margin={5} />
-                <Suspense fallback={<div>Loading</div>}>
-                    <RandomCocktails
-                        image={image}
-                        name={name}
-                        ingredients={ingredients}
-                        measurements={measurements}
-                        instructions={instructions}
-                        status={status}
-                    />
-                </Suspense>
+                <div id="random-cocktails-info">
+                    <SyncLoader color={color} loading={loading} width={300} height={10} margin={5} />
+                    <Suspense fallback={<div>Loading</div>}>
+                        <RandomCocktails
+                            image={image}
+                            name={name}
+                            ingredients={ingredients}
+                            measurements={measurements}
+                            instructions={instructions}
+                            status={status}
+                        />
+                    </Suspense>
+                </div>
             </div>
         </div>
     )

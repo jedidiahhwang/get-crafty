@@ -7,7 +7,7 @@
     height: 100vh;
     width: 100%;
 
-    h2 {
+    .subheaders {
         color: white;
         color: #FFFFFF;
         font-family: 'Federo', sans-serif;
@@ -18,20 +18,17 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 100vh;
+        height: 60%;
         width: 100%; 
 
-        #drink-info-box {
+        #random-cocktails-info {
             display: flex;
-            flex-direction: row;
             justify-content: center;
-
-            section {
-                width: 10vw;
-            }
+            align-items: center;
+            width: 80%;
         }
 
-        p {
+        p, h4 {
             color: white;
             color: #FFFFFF;
             font-family: 'Federo', sans-serif;
