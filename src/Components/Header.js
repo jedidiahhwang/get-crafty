@@ -8,7 +8,17 @@ const Header = () => {
 
     return (
         <Headroom id="headroom">
-            <h3>Login</h3>
+            <Link
+                className="header-links"
+                activeClass="active"
+                to="login-page"
+                spy={true}
+                smooth={true}
+                offset={-70}
+                duration={750}
+            >
+                Login
+            </Link>
             <h3>Register</h3>
             <Link
                 className="header-links"
