@@ -2,16 +2,14 @@
 
 #home-page {
     display: flex;
-    flex-direction: column;
-    background-image: url(../images/cocktail1.jpg);
-    background-size: contain;
+    background-image: url(../images/bar-background3.jpg);
+    background-size: 90vw 80vh;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    background-position: center;
+    background-position: right;
     background-color: black;
-    justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 80vh;
     width: 100%;
 
     #welcome-box {
@@ -20,31 +18,19 @@
         align-items: center;
         justify-content: center;
         position: relative;
-        height: 20vh;
-        width: 60vw;
+        height: 30vh;
+        width: 50vw;
         font-size: 2.5vw;
+        margin: 5%;
         font-weight: bolder;
         background: transparent;
 
-        h1, h3 {
-            color: #FFFFFF;
-            font-family: 'Federo', sans-serif;
+        h1, h4 {
+            color: #ffffff;
+            font-family: 'Roboto', sans-serif;
+            font-family: 'Roboto Mono', monospace;
             font-weight: bolder;
             margin: .05em; // Play with the margins using em and pixels
         }
     }
-
-    #buttons-container {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: relative;
-        height: 10vh;
-        width: 100%;
-
-        .reflective {
-            margin: 3vw;
-        }
-    }
-    
 } 

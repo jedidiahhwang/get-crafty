@@ -8,10 +8,9 @@ const HomePage = () => {
     return ( 
         <div id="home-page">
                 <div id="welcome-box">
-                    <h1>- Welcome to Get Crafty -</h1>
-                    <h3>Your personal bartender</h3>
+                    <h1>Get Crafty</h1>
+                    <h4>your personal bartender</h4>
                 </div>
-                <div class="pos down-arrow"></div>
         </div>
     )
 }

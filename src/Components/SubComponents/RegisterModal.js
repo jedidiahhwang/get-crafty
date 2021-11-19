@@ -1,11 +1,16 @@
 import React from "react";
+import Dialog from "@material-ui/core/Dialog";
+import Form from "./Form";
 
-const RegisterModal = (props) => {
+const RegisterModal = ({open, handleClose}) => {
 
 
     return (
         <div className="modal">
-            <h2 className="modal-header">
+            <Dialog open={open} onClose={handleClose}>
+                <Form handleClose={handleClose} />
+            </Dialog>
+            {/* <h2 className="modal-header">
                 Register
             </h2>
             <form className="modal-form">
@@ -42,7 +47,7 @@ const RegisterModal = (props) => {
                 <button className="modal-button">
                     Login
                 </button>
-            </section>
+            </section> */}
         </div>
     )
 }
