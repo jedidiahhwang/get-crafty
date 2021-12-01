@@ -1,4 +1,5 @@
 const express = require("express");
+const session = require("express-session");
 const cors = require("cors");
 const mongoose = require("mongoose");
 mongoose.Promise = global.Promise;
@@ -28,6 +29,14 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
+
+app.use(
+  session({
+    resave: false, // Forces the session to be saved back to the session store, even if the session was never modified during the request.
+    saveUninitialized: false, // Forces a session that is "uninitialized" to be saved to the store. False is useful when you need to require permission before setting a cookie.
+    secret: "demoSecret", // Kind of a hash for verifying cookie sessions.
+  })
+);
 
 app.get("/api/addUser", async (req, res) => {
   let results = await User.find({});
