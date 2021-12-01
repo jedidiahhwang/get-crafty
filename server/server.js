@@ -53,6 +53,12 @@ app.post("/api/login", async (req, res) => {
     return res.status(400).send("User does not exist.");
   };
 
+  const isAuthenticated = bcrypt.compareSync(password, results[0].password);
+
+  if(!isAuthenticated) {
+    return res.status(403).send("Incorrect password");
+  }
+
   return res.status(200).send(results);
 });
 
@@ -68,7 +74,7 @@ app.post("/api/addUser", (req, res) => {
 
   let myData = new User(req.body);
   myData.save()
-    .then((result) => {
+    .then(() => {
       res.send("User saved to database");
     })
     .catch((err) => {
