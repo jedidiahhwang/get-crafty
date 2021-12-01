@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import axios from 'axios';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -28,12 +29,26 @@ const Form = ({ handleClose }) => {
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  let userBody = {
+    firstName,
+    lastName,
+    email,
+    password
+  }
 
   const handleSubmit = e => {
     e.preventDefault();
     console.log(firstName, lastName, email, password);
     handleClose();
   };
+
+  const register = () => {
+
+    axios.post(`http://localhost:5005/api/addUser`, userBody)
+      .then((res) => {
+        console.log("User registered!");
+      })
+  }
 
   return (
     <form className={classes.root} onSubmit={handleSubmit}>
@@ -71,7 +86,7 @@ const Form = ({ handleClose }) => {
         <Button variant="contained" onClick={handleClose}>
           Cancel
         </Button>
-        <Button type="submit" variant="contained" color="primary">
+        <Button type="submit" variant="contained" color="primary" onClick={register}>
           Signup
         </Button>
       </div>

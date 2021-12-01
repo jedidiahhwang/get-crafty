@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require("cors");
 const mongoose = require("mongoose");
 mongoose.Promise = global.Promise;
 mongoose.connect("mongodb+srv://jedidiahhwang:!Finnegan042020!@get-crafty-test.auo7v.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
@@ -10,28 +11,39 @@ const userSchema = new mongoose.Schema({
   lastName: String,
   password: String,
   email: String,
-  recipes: {}
+  recipes: [
+    {
+      recipe: {
+        name: String,
+        ingredients: String,
+        instructions: String
+      }
+    }
+  ]
 });
 
 let User = mongoose.model("User", userSchema);
 
 const app = express();
 
+app.use(cors());
 app.use(express.json());
 
-app.get("/api/addUser", (req, res) => {
-  res.status(200).send("Hello world");
+app.get("/api/addUser", async (req, res) => {
+  let results = await User.find({});
+  res.status(200).send(results);
 });
 
 app.post("/api/addUser", (req, res) => {
   console.log(req.body);
   let myData = new User(req.body);
   myData.save()
-    .then((response) => {
+    .then((result) => {
       res.send("User saved to database");
     })
     .catch((err) => {
-      res.status(400).send("Unable to save to database");
+      console.log(err);
+      res.status(400).send(err);
     });
 });
 

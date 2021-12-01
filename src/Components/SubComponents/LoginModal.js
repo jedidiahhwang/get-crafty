@@ -1,34 +1,15 @@
 import React from "react";
+import Dialog from "@material-ui/core/Dialog";
+import Form from "./RegisterForm";
 
-const LoginModal = (props) => {
+const LoginModal = ({open, handleClose}) => {
 
 
     return (
         <div className="modal">
-            <h2 className="modal-header">
-                Login
-            </h2>
-            <form className="modal-form">
-                <h4 className="modal-subheader">
-                    Username
-                </h4>
-                <input
-                    className="input username"
-                    placeholder="Username"
-                />
-                <h4 className="modal-subheader">
-                    Password
-                </h4>
-                <input
-                    className="input password"
-                    placeholder="Password"
-                />
-            </form>
-            <section className="modal-button-holder">
-                <button className="modal-button">
-                    Login
-                </button>
-            </section>
+            <Dialog open={open} onClose={handleClose}>
+                <Form handleClose={handleClose} />
+            </Dialog>
         </div>
     )
 }
