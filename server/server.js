@@ -1,6 +1,7 @@
 const express = require("express");
 const session = require("express-session");
 const cors = require("cors");
+const bcrypt = require("bcrypt");
 const mongoose = require("mongoose");
 mongoose.Promise = global.Promise;
 mongoose.connect("mongodb+srv://jedidiahhwang:!Finnegan042020!@get-crafty-test.auo7v.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
@@ -43,8 +44,28 @@ app.get("/api/addUser", async (req, res) => {
   res.status(200).send(results);
 });
 
+app.post("/api/login", async (req, res) => {
+  const {email, password} = req.body;
+
+  let results = await User.find({email: email});
+  
+  if(Object.keys(results).length === 0) {
+    return res.status(400).send("User does not exist.");
+  };
+
+  return res.status(200).send(results);
+});
+
 app.post("/api/addUser", (req, res) => {
   console.log(req.body);
+
+  const {password} = req.body;
+
+  const salt = bcrypt.genSaltSync(10);
+  const passwordHash = bcrypt.hashSync(password, salt);
+
+  req.body.password = passwordHash;
+
   let myData = new User(req.body);
   myData.save()
     .then((result) => {

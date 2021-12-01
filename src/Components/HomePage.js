@@ -1,15 +1,25 @@
-import React from "react";
+import React, {useState} from "react";
+import RegisterModal from "./SubComponents/RegisterModal";
 
 import "../SASS/_homepage.scss";
-import backgroundImage from "../images/cocktail1.jpg";
 
 const HomePage = () => {
+
+    const [open, setOpen] = useState(false);
+
+    const handleOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
 
     return ( 
         <div id="home-page">
                 <div id="welcome-box">
-                    <h1>Get Crafty</h1>
-                    <h4>your personal bartender</h4>
+                    <h2>Get Crafty</h2>
+                    <h4>Let's try something new</h4>
                 </div>
         </div>
     )

@@ -19,10 +19,7 @@ const Header = () => {
 
     return (
         <Headroom id="headroom">
-            <button>Login</button>
-            <a>Register</a>
-            <button variant="contained" color="primary" onClick={handleOpen}>Register</button>
-            <RegisterModal open={open} handleClose={handleClose} />
+
         </Headroom>
     )
 }
