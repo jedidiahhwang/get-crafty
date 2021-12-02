@@ -39,7 +39,7 @@ app.use(
   })
 );
 
-app.get("/api/addUser", async (req, res) => {
+app.get("/api/user", async (req, res) => {
   let results = await User.find({});
   res.status(200).send(results);
 });
@@ -47,22 +47,34 @@ app.get("/api/addUser", async (req, res) => {
 app.post("/api/login", async (req, res) => {
   const {email, password} = req.body;
 
-  let results = await User.find({email: email});
+  let results = await User.findOne({email: email});
+
+  const {_id, firstName, lastName, email: userEmail, recipes} = results;
   
   if(Object.keys(results).length === 0) {
     return res.status(400).send("User does not exist.");
   };
 
-  const isAuthenticated = bcrypt.compareSync(password, results[0].password);
+  const isAuthenticated = bcrypt.compareSync(password, results.password);
 
   if(!isAuthenticated) {
     return res.status(403).send("Incorrect password");
   }
 
-  return res.status(200).send(results);
+  let returnUser = {
+    _id,
+    firstName,
+    lastName,
+    userEmail,
+    recipes
+  }
+
+  console.log(returnUser);
+
+  return res.status(200).send(returnUser);
 });
 
-app.post("/api/addUser", (req, res) => {
+app.post("/api/user", (req, res) => {
   console.log(req.body);
 
   const {password} = req.body;
