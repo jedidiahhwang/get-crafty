@@ -61,6 +61,7 @@ app.post("/api/login", async (req, res) => {
     return res.status(403).send("Incorrect password");
   }
 
+  // Create a new object to return with the password filtered out, so front end doesn't get hash.
   let returnUser = {
     _id,
     firstName,
@@ -69,15 +70,19 @@ app.post("/api/login", async (req, res) => {
     recipes
   }
 
-  console.log(returnUser);
-
   return res.status(200).send(returnUser);
 });
 
-app.post("/api/user", (req, res) => {
-  console.log(req.body);
+app.post("/api/user", async (req, res) => {
+  const {email, password} = req.body;
 
-  const {password} = req.body;
+  let results = await User.findOne({email: email});
+
+  console.log(results);
+
+  if(results) {
+    return res.status(409).send("User already exists");
+  }
 
   const salt = bcrypt.genSaltSync(10);
   const passwordHash = bcrypt.hashSync(password, salt);
