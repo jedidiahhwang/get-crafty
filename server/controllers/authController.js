@@ -1,13 +1,17 @@
 const bcrypt = require("bcrypt");
-require("mongoose");
+const User = require("../mongoose/mongooseSchema");
 
 require("../mongoose/mongooseConnect");
-const User = require("../mongoose/mongooseSchema");
 
 module.exports = {
     getAllUsers: async (req, res) => {
         let results = await User.find({});
         res.status(200).send(results);
+    },
+    getUserSession: async (req, res) => {
+        if(req.session.user) {
+            res.status(200).send(req.session.user);
+        }
     },
     login: async (req, res) => {
         const {email, password} = req.body;
@@ -34,6 +38,8 @@ module.exports = {
           userEmail,
           recipes
         }
+
+        req.session.user = returnUser;
       
         return res.status(200).send(returnUser);
     },
@@ -51,14 +57,25 @@ module.exports = {
 
         req.body.password = passwordHash;
 
+
         let myData = new User(req.body);
+        const {_id, firstName, lastName, email: userEmail, recipes} = myData;
+
         myData.save()
             .then(() => {
-            res.send("User saved to database");
+                let returnUser = {
+                    _id,
+                    firstName,
+                    lastName,
+                    userEmail,
+                    recipes
+                  }
+                req.session.user = returnUser;
+                res.send("User saved to database");
             })
             .catch((err) => {
-            console.log(err);
-            res.status(400).send(err);
+                console.log(err);
+                res.status(400).send(err);
             });
     }
 }

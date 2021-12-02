@@ -1,12 +1,10 @@
 const express = require("express");
 const session = require("express-session");
 const cors = require("cors");
-const bcrypt = require("bcrypt");
-const mongoose = require("mongoose");
-require("./mongoose/mongooseConnect");
-const User = require("./mongoose/mongooseSchema");
 
-const {getAllUsers, login, register} = require("./controllers/authController");
+require("./mongoose/mongooseConnect");
+
+const {getAllUsers, getUserSession, login, register} = require("./controllers/authController");
 
 const app = express();
 
@@ -21,7 +19,8 @@ app.use(
   })
 );
 
-app.get("/api/user", getAllUsers); // Dummy endpoint to confirm the server is working
+app.get("/api/userAll", getAllUsers); // Dummy endpoint to confirm the server is working
+app.get("/api/userSession", getUserSession);
 app.post("/auth/login", login);
 app.post("/auth/user", register);
 
