@@ -3,28 +3,10 @@ const session = require("express-session");
 const cors = require("cors");
 const bcrypt = require("bcrypt");
 const mongoose = require("mongoose");
-mongoose.Promise = global.Promise;
-mongoose.connect("mongodb+srv://jedidiahhwang:!Finnegan042020!@get-crafty-test.auo7v.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
-  .then(() => console.log("Database connected"))
-  .catch((err) => console.log(err));
+require("./mongoose/mongooseConnect");
+const User = require("./mongoose/mongooseSchema");
 
-const userSchema = new mongoose.Schema({
-  firstName: String,
-  lastName: String,
-  password: String,
-  email: String,
-  recipes: [
-    {
-      recipe: {
-        name: String,
-        ingredients: String,
-        instructions: String
-      }
-    }
-  ]
-});
-
-let User = mongoose.model("User", userSchema);
+const {getAllUsers} = require("./controllers/authController");
 
 const app = express();
 
@@ -39,65 +21,62 @@ app.use(
   })
 );
 
-app.get("/api/user", async (req, res) => {
-  let results = await User.find({});
-  res.status(200).send(results);
-});
+app.get("/api/user", getAllUsers);
 
-app.post("/api/login", async (req, res) => {
-  const {email, password} = req.body;
+// app.post("/api/login", async (req, res) => {
+//   const {email, password} = req.body;
 
-  let results = await User.findOne({email: email});
+//   let results = await User.findOne({email: email});
 
-  const {_id, firstName, lastName, email: userEmail, recipes} = results;
+//   const {_id, firstName, lastName, email: userEmail, recipes} = results;
   
-  if(Object.keys(results).length === 0) {
-    return res.status(400).send("User does not exist.");
-  };
+//   if(Object.keys(results).length === 0) {
+//     return res.status(400).send("User does not exist.");
+//   };
 
-  const isAuthenticated = bcrypt.compareSync(password, results.password);
+//   const isAuthenticated = bcrypt.compareSync(password, results.password);
 
-  if(!isAuthenticated) {
-    return res.status(403).send("Incorrect password");
-  }
+//   if(!isAuthenticated) {
+//     return res.status(403).send("Incorrect password");
+//   }
 
-  // Create a new object to return with the password filtered out, so front end doesn't get hash.
-  let returnUser = {
-    _id,
-    firstName,
-    lastName,
-    userEmail,
-    recipes
-  }
+//   // Create a new object to return with the password filtered out, so front end doesn't get hash.
+//   let returnUser = {
+//     _id,
+//     firstName,
+//     lastName,
+//     userEmail,
+//     recipes
+//   }
 
-  return res.status(200).send(returnUser);
-});
+//   return res.status(200).send(returnUser);
+// });
 
-app.post("/api/user", async (req, res) => {
-  const {email, password} = req.body;
+// app.post("/api/user", async (req, res) => {
+//   const {email, password} = req.body;
 
-  let results = await User.findOne({email: email});
+//   let results = await User.findOne({email: email});
 
-  console.log(results);
+//   console.log(results);
 
-  if(results) {
-    return res.status(409).send("User already exists");
-  }
+//   if(results) {
+//     return res.status(409).send("User already exists");
+//   }
 
-  const salt = bcrypt.genSaltSync(10);
-  const passwordHash = bcrypt.hashSync(password, salt);
+//   const salt = bcrypt.genSaltSync(10);
+//   const passwordHash = bcrypt.hashSync(password, salt);
 
-  req.body.password = passwordHash;
+//   req.body.password = passwordHash;
 
-  let myData = new User(req.body);
-  myData.save()
-    .then(() => {
-      res.send("User saved to database");
-    })
-    .catch((err) => {
-      console.log(err);
-      res.status(400).send(err);
-    });
-});
+//   let myData = new User(req.body);
+//   myData.save()
+//     .then(() => {
+//       res.send("User saved to database");
+//     })
+//     .catch((err) => {
+//       console.log(err);
+//       res.status(400).send(err);
+//     });
+// });
 
 app.listen(5005, () => console.log("Server is ready on port 5005"));
