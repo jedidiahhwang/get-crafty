@@ -4,7 +4,7 @@ const cors = require("cors");
 
 require("./mongoose/mongooseConnect");
 
-const {getAllUsers, getUserSession, login, register} = require("./controllers/authController");
+const {getAllUsers, getUserSession, login, logout, register} = require("./controllers/authController");
 
 const app = express();
 
@@ -22,6 +22,7 @@ app.use(
 app.get("/api/userAll", getAllUsers); // Dummy endpoint to confirm the server is working
 app.get("/api/userSession", getUserSession);
 app.post("/auth/login", login);
+app.post("/auth/logout", logout);
 app.post("/auth/user", register);
 
 app.listen(5005, () => console.log("Server is ready on port 5005"));

@@ -10,7 +10,9 @@ module.exports = {
     },
     getUserSession: async (req, res) => {
         if(req.session.user) {
-            res.status(200).send(req.session.user);
+            return res.status(200).send(req.session.user);
+        } else {
+            return res.status(400).send("No session exists");
         }
     },
     login: async (req, res) => {
@@ -42,6 +44,10 @@ module.exports = {
         req.session.user = returnUser;
       
         return res.status(200).send(returnUser);
+    },
+    logout: async (req, res) => {
+        req.session.destroy();
+        res.status(200).send("User has logged out");
     },
     register: async (req, res) => {
         const {email, password} = req.body;
