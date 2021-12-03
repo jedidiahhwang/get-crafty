@@ -20,11 +20,12 @@ module.exports = {
 
         let results = await User.findOne({email: email});
       
-        const {_id, firstName, lastName, email: userEmail, recipes} = results;
         
-        if(Object.keys(results).length === 0) {
-          return res.status(400).send("User does not exist.");
+        if(!results) {
+            return res.status(400).send("User does not exist.");
         };
+
+        const {_id, firstName, lastName, email: userEmail, recipes} = results;
       
         const isAuthenticated = bcrypt.compareSync(password, results.password);
       
@@ -37,7 +38,7 @@ module.exports = {
           _id,
           firstName,
           lastName,
-          userEmail,
+          email,
           recipes
         }
 

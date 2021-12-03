@@ -5,6 +5,7 @@ const cors = require("cors");
 require("./mongoose/mongooseConnect");
 
 const {getAllUsers, getUserSession, login, logout, register} = require("./controllers/authController");
+const {getAllRecipes, addRecipe, deleteRecipe} = require("./controllers/recipesController");
 
 const app = express();
 
@@ -19,10 +20,16 @@ app.use(
   })
 );
 
+// Authorization endpoints
 app.get("/api/userAll", getAllUsers); // Dummy endpoint to confirm the server is working
-app.get("/api/userSession", getUserSession);
+app.get("/api/userSession", getUserSession); // Endpoint to check if session exists
 app.post("/auth/login", login);
 app.post("/auth/logout", logout);
 app.post("/auth/user", register);
+
+// Drink endpoints
+app.get("/drinks/recipes", getAllRecipes);
+app.post("/drinks/recipe", addRecipe);
+app.delete("/drinks/recipe", deleteRecipe);
 
 app.listen(5005, () => console.log("Server is ready on port 5005"));

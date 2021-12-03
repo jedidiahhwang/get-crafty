@@ -7,13 +7,12 @@ const userSchema = new mongoose.Schema({
     password: String,
     email: String,
     recipes: [
-      {
-        recipe: {
-          name: String,
-          ingredients: String,
-          instructions: String
+        recipe = {
+            idDrink: Number,
+            name: String,
+            ingredients: String,
+            instructions: String
         }
-      }
     ]
 });
 
