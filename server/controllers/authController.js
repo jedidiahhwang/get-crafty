@@ -22,10 +22,12 @@ module.exports = {
       
         
         if(!results) {
-            return res.status(400).send("User does not exist.");
+            return res.status(400).send("User does not exist");
+        } else if(req.session.user) {
+            return res.status(400).send("Someone is already logged in");
         };
 
-        const {_id, firstName, lastName, email: userEmail, recipes} = results;
+        const {_id, firstName, lastName, recipes} = results;
       
         const isAuthenticated = bcrypt.compareSync(password, results.password);
       
