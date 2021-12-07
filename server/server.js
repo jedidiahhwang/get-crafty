@@ -25,10 +25,10 @@ app.get("/api/userAll", getAllUsers); // Dummy endpoint to confirm the server is
 app.get("/api/userSession", getUserSession); // Endpoint to check if session exists
 app.post("/auth/login", login);
 app.post("/auth/logout", logout);
-app.post("/auth/user", register);
+app.post("/auth/register", register);
 
 // Drink endpoints
-app.get("/drinks/recipes", getAllRecipes);
+app.get("/drinks/recipe", getAllRecipes);
 app.post("/drinks/recipe", addRecipe);
 app.delete("/drinks/recipe", deleteRecipe);
 

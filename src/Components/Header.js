@@ -19,7 +19,14 @@ const Header = () => {
 
     return (
         <Headroom id="headroom">
-
+            <section id="logo-section">
+                <Link className="logo-links">get crafty</Link>
+            </section>
+            <section id="link-section">
+                <Link className="header-links">About</Link>
+                <Link className="header-links">Login</Link>
+                <Link className="header-links">Register</Link>
+            </section>
         </Headroom>
     )
 }
