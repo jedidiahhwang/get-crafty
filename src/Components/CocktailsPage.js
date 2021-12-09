@@ -2,7 +2,7 @@ import React, {useEffect, useState, Suspense} from "react";
 import axios from "axios";
 import SyncLoader from "react-spinners/SyncLoader";
 
-import "../SASS/_cocktailspage.scss";
+import "../SASS/components/_cocktailspage.scss";
 
 const RandomCocktails = React.lazy(() => import("./SubComponents/RandomCocktails.js"));
 

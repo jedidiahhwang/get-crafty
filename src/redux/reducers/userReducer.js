@@ -24,8 +24,6 @@ const initialState = {
 const LOGIN_USER = "LOGIN_USER";
 const LOGOUT = "LOGOUT";
 
-// Set the necessary action creators. They just dispatch actions.
-
 /*
     Finally, export the functions in one reducer.
     The reducer functions takes an initial state (set to initialState), as well
@@ -33,13 +31,13 @@ const LOGOUT = "LOGOUT";
     be "LOGIN").
 */
 export default function reducer(state = initialState, action) {
-    // switch is typically used instead of if-else. Define what the action is.
+    // Switch is typically used instead of if-else. Define what the action is.
     
     switch(action.type) { // What is the type of action?
-        case LOGIN_USER:
-            const {username} = action.payload; // What is the value attached to the action?
-            return {username, isLoggedIn: true};
-        case LOGOUT:
+        case "login":
+            const email = action.payload; // What is the value attached to the action?
+            return {email, isLoggedIn: true};
+        case "logout":
             return initialState;
         default:
             return state;

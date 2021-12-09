@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 
-import "../../SASS/_randomcocktails.scss";
+import "../../SASS/components/_randomcocktails.scss";
 
 const RandomCocktails = (props) => {
 

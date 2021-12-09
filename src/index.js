@@ -3,16 +3,29 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import createStore from "./redux/store.js";
 
 import {Provider} from "react-redux"; // Allows whole app to access store.
-import store from "./redux/store.js";
+import {PersistGate} from "redux-persist/integration/react";
+/*
+What are the following router imports?
+
+- BrowserRouter as Router is the entire route functionality.
+- Routes is like the old Switch.
+- Route is the actualy specific route.
+*/
+import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
+
+const {store, persistor} = createStore();
 
 ReactDOM.render(
-  <React.StrictMode>
+  <Router>
     <Provider store={store}>
-      <App />
+      <PersistGate loading={null} persistor={persistor}>
+        <App />
+      </PersistGate>
     </Provider>
-  </React.StrictMode>,
+  </Router>,
   document.getElementById('root')
 );
 
