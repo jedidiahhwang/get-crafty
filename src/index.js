@@ -7,6 +7,7 @@ import createStore from "./redux/store.js";
 
 import {Provider} from "react-redux"; // Allows whole app to access store.
 import {PersistGate} from "redux-persist/integration/react";
+
 /*
 What are the following router imports?
 
@@ -16,8 +17,10 @@ What are the following router imports?
 */
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 
+// Call createStore() to return those store and persistor values, destructured.
 const {store, persistor} = createStore();
 
+// Make sure you wrap your whole root app in the persistor, similar to why Provider needs to wrap.
 ReactDOM.render(
   <Router>
     <Provider store={store}>

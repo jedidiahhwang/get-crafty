@@ -1,8 +1,8 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import { persistStore, persistReducer} from "redux-persist";
+import { persistStore, persistReducer} from "redux-persist"; // Required imports for redux-persist.
 import logger from "redux-logger";
-import thunk from "redux-thunk";
+import thunk from "redux-thunk"; // Handle async functionality.
 import storage from "redux-persist/lib/storage"; // Defaults to localStorage for web.
 
 import userReducer from "./reducers/userReducer.js";
@@ -28,8 +28,11 @@ const persistedReducer = persistReducer(persistConfig, reducers);
         - applyMiddleware() extends Redux custom functionality.
         - promiseMiddleware lets you handle async action creators.
 */
+
+// Refer to https://www.npmjs.com/package/redux-persist for redux-persist tutorial.
+// Also refer to https://stackoverflow.com/questions/59984052/react-redux-thunk-persist-typeerror-store-getstate-is-not-a-function-in-s for calling createStore().
 export default () => {
     let store = createStore(persistedReducer, composeWithDevTools(applyMiddleware(thunk, logger)));
-    let persistor = persistStore(store);
-    return {store, persistor};
+    let persistor = persistStore(store); // Make your store persist (make the state stay).
+    return {store, persistor}; // You're going to return both the store and persisted store.
 };
