@@ -2,7 +2,8 @@ import React from "react";
 import {Routes, Route} from "react-router-dom";
 
 import HomePage from "./pages/homepage";
-import Register from "./Components/Register";
+import LoginPage from "./pages/loginpage";
+// import Register from "./Components/SubComponents/Modal";
 
 /*
     Couple differences between React Router v5 and v6...
@@ -14,6 +15,7 @@ import Register from "./Components/Register";
 export default (
     <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<LoginPage />} />
+        {/* <Route path="/register" element={<Register />} /> */}
     </Routes>
 )

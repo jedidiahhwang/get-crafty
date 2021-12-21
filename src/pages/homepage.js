@@ -5,12 +5,13 @@ import {actionCreators} from "../redux/actionCreatorExport.js";
 
 import Home from "../Components/Home.js";
 import Header from "../Components/Header.js";
+import RandomCocktail from "../Components/CocktailsPage.js";
+import About from "../Components/AboutPage.js";
 
 import "../SASS/pages/_homepage.scss";
 
 const HomePage = () => {
 
-    const [open, setOpen] = useState(false);
 
     /* 
         Attempt at using React Hooks instead of connect().
@@ -28,25 +29,16 @@ const HomePage = () => {
                 b. This refers to the dispatch() function from the Redux store.
     */
     const user = useSelector((state) => state.user);
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
 
     const {login, logout} = bindActionCreators(actionCreators, dispatch);
-
-    console.log(login, logout);
-    console.log(user);
-
-    const handleOpen = () => {
-        setOpen(true);
-    };
-
-    const handleClose = () => {
-        setOpen(false);
-    };
 
     return ( 
         <div id="home-page">
             <Header />
             <Home />
+            <RandomCocktail />
+            <About />
         </div>
     )
 }

@@ -13,6 +13,6 @@ export const logout = () => {
     return (dispatch) => {
         dispatch({
             type: "logout",
-        })
-    }
+        });
+    };
 };

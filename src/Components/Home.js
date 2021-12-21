@@ -5,7 +5,8 @@ import {actionCreators} from "../redux/actionCreatorExport.js";
 
 import "../SASS/components/_home.scss";
 
-const Home = (props) => {
+const Home = () => {
+    const user = useSelector((state) => state.user);
 
     return ( 
         <div id="home">
