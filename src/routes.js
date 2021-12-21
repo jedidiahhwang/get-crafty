@@ -3,6 +3,7 @@ import {Routes, Route} from "react-router-dom";
 
 import HomePage from "./pages/homepage";
 import LoginPage from "./pages/loginpage";
+import RegisterPage from "./pages/registerpage";
 // import Register from "./Components/SubComponents/Modal";
 
 /*
@@ -16,6 +17,6 @@ export default (
     <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
-        {/* <Route path="/register" element={<Register />} /> */}
+        <Route path="/register" element={<RegisterPage />} />
     </Routes>
 )
