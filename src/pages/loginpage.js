@@ -1,19 +1,13 @@
 import React, {useState} from "react";
 
+import LoginForm from "../Components/LoginForm.js";
+import "../SASS/pages/_loginpage.scss";
+
 const LoginPage = () => {
     
     return (
         <div id="login-page">
-            <form>
-                <label>
-                    Email:
-                    <input type="email" placeholder="Email" />
-                </label>
-                <label>
-                    Password:
-                    <input type="password" placeholder="Password" />
-                </label>
-            </form>
+            <LoginForm />
         </div>
     )
 }

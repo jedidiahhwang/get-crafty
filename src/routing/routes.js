@@ -1,10 +1,9 @@
 import React from "react";
-import {Routes, Route} from "react-router-dom";
+import {Navigate, Routes, Route} from "react-router-dom";
 
-import HomePage from "./pages/homepage";
-import LoginPage from "./pages/loginpage";
-import RegisterPage from "./pages/registerpage";
-// import Register from "./Components/SubComponents/Modal";
+import HomePage from "../pages/homepage";
+import LoginPage from "../pages/loginpage";
+import RegisterPage from "../pages/registerpage";
 
 /*
     Couple differences between React Router v5 and v6...
