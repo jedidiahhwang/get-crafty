@@ -5,7 +5,7 @@ import {actionCreators} from "../redux/actionCreatorExport.js";
 
 import Home from "../Components/Home.js";
 import Header from "../Components/Header.js";
-import RandomCocktail from "../Components/CocktailsPage.js";
+import Footer from "../Components/Footer.js";
 import About from "../Components/AboutPage.js";
 
 import "../SASS/pages/_homepage.scss";
@@ -37,8 +37,8 @@ const HomePage = () => {
         <div id="home-page">
             <Header />
             <Home />
-            <RandomCocktail />
             <About />
+            <Footer />
         </div>
     )
 }

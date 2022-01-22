@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, {useState} from "react";
+import {Navigate} from "react-router-dom";
 import {useSelector, useDispatch} from "react-redux";
 import {bindActionCreators} from "redux";
 import {actionCreators} from "../redux/actionCreatorExport.js";
@@ -34,8 +35,9 @@ const LoginForm = () => {
             })
     }
 
-    
-    
+    if(user.isLoggedIn) {
+        return <Navigate to="/userpage" />
+    }
 
     return (
         <div id="login-form-container">
@@ -51,6 +53,11 @@ const LoginForm = () => {
                 </label>
                 <button type="submit" onClick={userLogin}>Submit</button>
             </form>
+            <>
+                {/* {user.isLoggedIn && user.email ?
+                    <Navigate to="/userpage" />
+                : null } */}
+            </>
         </div>
     )
 }

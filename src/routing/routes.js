@@ -4,6 +4,9 @@ import {Navigate, Routes, Route} from "react-router-dom";
 import HomePage from "../pages/homepage";
 import LoginPage from "../pages/loginpage";
 import RegisterPage from "../pages/registerpage";
+import UserPage from "../pages/userpage";
+
+import AuthenticatedRoutes from "./AuthenticatedRoutes";
 
 /*
     Couple differences between React Router v5 and v6...
@@ -17,5 +20,6 @@ export default (
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
+        <Route path="/userpage" element={<AuthenticatedRoutes component={<UserPage />} />} />
     </Routes>
 )
