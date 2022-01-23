@@ -39,26 +39,25 @@ const AboutPage = () => {
                         </p>
                     </div>
                     <div className="about-card-button-holder">
-                        <button>Random Drinks</button>
+                        <button className="about-buttons" id="about-random-button">Random Drinks</button>
                     </div>
                 </section>
                 <section className="about-card" onClick={routeSearchIngredients}>
                     <h3 className="about-card-header">Search using ingredients</h3>
                     <img src={ingredientsImage} alt="Icon for ingredients card" id="ingredients-image" />
                     <div className="about-card-details">
-                        
                         <p>
                             Have ingredients on hand?<br></br>
                             See what you can make.
                         </p>
                     </div>
                     <div className="about-card-button-holder">
-                        <button>Search Drinks</button>
+                        <button className="about-buttons" id="about-ingredients-button">Search Drinks</button>
                     </div>
                 </section>
                 <section className="about-card" onClick={routeRegister}>
                     <h3 className="about-card-header">Register to save recipes</h3>
-                    <img src={registerImage} alt="Icon for rregister card" id="register-image" />
+                    <img src={registerImage} alt="Icon for register card" id="register-image" />
                     <div className="about-card-details">
                         <p>
                             Want to build your cocktail library?<br></br>
@@ -66,7 +65,7 @@ const AboutPage = () => {
                         </p>
                     </div>
                     <div className="about-card-button-holder">
-                        <button>Save Drinks</button>
+                        <button className="about-buttons" id="about-register-button">Save Drinks</button>
                     </div>
                 </section>                
             </div>
