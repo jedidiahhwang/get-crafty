@@ -30,7 +30,7 @@ const LoginForm = () => {
                 console.log("Logged in");
             })
             .catch((err) => {
-                console.log("Request did not go through.");
+                console.log("Request did not go through");
                 console.log(err);
             })
     }

@@ -48,13 +48,13 @@
                 #ingredient-input {
                     height: 2.5rem;
                     width: 100%;
+                    border: 1px solid #7878786b;
                     border-radius: 5px;
                 }
 
                 #ingredient-input::-webkit-input-placeholder {
                     color: #000000;
-                    font-family: 'Roboto', sans-serif;
-                    font-family: 'Roboto Mono', monospace;
+                    font-family: 'Playfair Display', serif;
                     font-weight: 400;
                     font-size: 1rem;
                     padding: 1rem;

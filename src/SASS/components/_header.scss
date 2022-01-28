@@ -13,11 +13,18 @@
         background-color: #ffffff;
         font-size: 1.25vw;
 
-        #logo-section {
+        #logo-holder {
             display: flex;
             align-items: center;
             height: 100%;
-            width: 20%;
+            width: 15%;
+            font-family: 'Playfair Display', serif;
+            font-weight: bolder;
+            letter-spacing: 1px;
+
+            #logo-image {
+                margin-left: 10%;
+            }
         }
         
         #link-section{
@@ -25,16 +32,15 @@
             justify-content: space-evenly;
             align-items: center;
             height: 100%;
-            width: 25%;
+            width: 20%;
         }
 
         .header-links, .logo-links {
             color: #000000;
-            font-family: 'Roboto', sans-serif;
-            font-family: 'Roboto Mono', monospace;
+            font-family: 'Playfair Display', serif;
             cursor: pointer;
-            font-weight: 600;
-            font-size: 1rem;
+            font-weight: 300;
+            font-size: .9rem;
             margin: .1em;
         }
     }

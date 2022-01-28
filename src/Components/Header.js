@@ -10,6 +10,7 @@ import axios from "axios";
 import Modal from "./SubComponents/Modal.js";
 
 import "../SASS/components/_header.scss";
+import logo from "../images/icons/icons8-glass-of-whiskey-50.png";
 
 const Header = (props) => {
     const [currentUser, setCurrentUser] = useState({});
@@ -40,16 +41,14 @@ const Header = (props) => {
 
     return (
         <Headroom id="headroom">
-            <section id="logo-section">
-                <Link to="/" className="logo-links">get crafty</Link>
-            </section>
+            <div id="logo-holder">
+                <img src={logo} alt="Get Crafty icon" id="logo-image"/>
+                <h3 id="logo-text">Get Crafty</h3>
+            </div>
             <section id="link-section">
-                {/* <Link to="/about" className="header-links">about</Link> */}
-                <button onClick={() => handleClick()}>login</button>
-                <Link to="/login" className="header-links">login</Link>
-                <button onClick={() => logout()}>logout</button>
-                <Link to="/" className="header-links">logout</Link>
-                <Link to="/register" className="header-links">register</Link>
+                <Link to="/about" className="header-links">About</Link>
+                <Link to="/login" className="header-links">Login</Link>
+                <Link to="/register" className="header-links">Register</Link>
             </section>
             <>
                 {user.isLoggedIn && user.email ? 
