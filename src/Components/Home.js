@@ -38,7 +38,11 @@ const Home = (props) => {
                     console.log(err);
                 })
         }
-    }
+    };
+
+    const handleIsSearched = (search) => {
+        setIsSearched(false);
+    };
 
     return ( 
         <div id="home">
@@ -55,7 +59,7 @@ const Home = (props) => {
                             </form>
                         </div>
                     </>
-                    : <SearchResults drink={drink} apiData={apiData}/>}
+                    : <SearchResults drink={drink} apiData={apiData} onExit={handleIsSearched}/>}
             </div>
         </div>
     )
