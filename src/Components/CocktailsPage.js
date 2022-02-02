@@ -1,6 +1,7 @@
 import React, {useEffect, useState, Suspense} from "react";
 import axios from "axios";
 import SyncLoader from "react-spinners/SyncLoader";
+import ClipLoader from "react-spinners/ClipLoader";
 
 import "../SASS/components/_cocktailspage.scss";
 

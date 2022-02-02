@@ -1,10 +1,11 @@
 import axios from "axios";
-import React, {useState} from "react";
+import React, {useState, Suspense} from "react";
 import {useSelector, useDispatch} from "react-redux";
 import {Navigate} from "react-router-dom";
 import {Link} from "react-router-dom";
 import {bindActionCreators} from "redux";
 import {actionCreators} from "../redux/actionCreatorExport.js";
+import ClipLoader from "react-spinners/ClipLoader";
 
 import SearchResults from "./SearchResults.js";
 
@@ -16,6 +17,9 @@ const Home = (props) => {
     const [drink, setDrink] = useState("");
     const [apiData, setApiData] = useState();
     const [isSearched, setIsSearched] = useState(false);
+    const [status, setStatus] = useState("hidden");
+    let [loading, setLoading] = useState(true);
+    let [color, setColor] = useState("#ffffff");
 
     const handleChange = (event) => {
         setDrink(event.target.value);
@@ -33,6 +37,12 @@ const Home = (props) => {
                 .then((res) => {
                     setApiData(res.data);
                     setIsSearched(true);
+
+                    const timer = setTimeout(() => {
+                        console.log("Rendered information after 3 seconds");
+                        setLoading(false);
+                        setStatus("not-hidden");
+                    }, 1500);
                 })
                 .catch((err) => {
                     console.log(err);
@@ -47,7 +57,6 @@ const Home = (props) => {
     return ( 
         <div id="home">
             <div id="welcome-box">
-                
                 {!isSearched ? 
                     <>
                         <h1>Let's make a drink</h1>
@@ -59,7 +68,14 @@ const Home = (props) => {
                             </form>
                         </div>
                     </>
-                    : <SearchResults drink={drink} apiData={apiData} onExit={handleIsSearched}/>}
+                    : 
+                    <>
+                        <ClipLoader color={color} loading={loading} width={300} height={10} margin={5} />
+                            <Suspense fallback={<div>Loading</div>}>
+                                <SearchResults drink={drink} apiData={apiData} onExit={handleIsSearched} status={status}/>
+                            </Suspense>
+                    </>
+                }   
             </div>
         </div>
     )
