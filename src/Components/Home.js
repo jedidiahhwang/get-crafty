@@ -29,6 +29,9 @@ const Home = (props) => {
     const generateCocktail = (event) => {
         event.preventDefault();
 
+        setStatus("hidden");
+        setLoading(true);
+
         if(!drink) {
             console.log("No value input");
         } else {
@@ -42,7 +45,7 @@ const Home = (props) => {
                         console.log("Rendered information after 3 seconds");
                         setLoading(false);
                         setStatus("not-hidden");
-                    }, 1500);
+                    }, 3000);
                 })
                 .catch((err) => {
                     console.log(err);
@@ -51,6 +54,9 @@ const Home = (props) => {
     };
 
     const handleIsSearched = (search) => {
+        // setStatus("hidden");
+        setDrink("");
+        // setLoading(false);
         setIsSearched(false);
     };
 
