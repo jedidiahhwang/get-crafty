@@ -14,6 +14,7 @@ const Home = (props) => {
     const user = useSelector((state) => state.user);
     
     const [drink, setDrink] = useState("");
+    const [apiData, setApiData] = useState();
     const [isSearched, setIsSearched] = useState(false);
 
     const handleChange = (event) => {
@@ -30,6 +31,7 @@ const Home = (props) => {
             axios
                 .get(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${drink}`)
                 .then((res) => {
+                    setApiData(res.data);
                     setIsSearched(true);
                 })
                 .catch((err) => {
@@ -53,7 +55,7 @@ const Home = (props) => {
                             </form>
                         </div>
                     </>
-                    : <SearchResults drink={drink} />}
+                    : <SearchResults drink={drink} apiData={apiData}/>}
             </div>
         </div>
     )
