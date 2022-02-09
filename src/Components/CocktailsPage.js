@@ -5,7 +5,7 @@ import ClipLoader from "react-spinners/ClipLoader";
 
 import "../SASS/components/_cocktailspage.scss";
 
-const RandomCocktails = React.lazy(() => import("./SubComponents/RandomCocktails.js"));
+const CocktailResults = React.lazy(() => import("./CocktailResults.js"));
 
 const CocktailsPage = () => {
 
@@ -78,7 +78,7 @@ const CocktailsPage = () => {
                 <div id="random-cocktails-info">
                     <SyncLoader color={color} loading={loading} width={300} height={10} margin={5} />
                     <Suspense fallback={<div>Loading</div>}>
-                        <RandomCocktails
+                        <CocktailResults
                             image={image}
                             name={name}
                             ingredients={ingredients}

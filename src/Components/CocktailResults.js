@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from "react";
 
-import "../../SASS/components/_randomcocktails.scss";
+import "../SASS/components/_randomcocktails.scss";
 
-const RandomCocktails = (props) => {
+const CocktailResults = (props) => {
 
     return (
         <div id={props.status}>
@@ -38,4 +38,4 @@ const RandomCocktails = (props) => {
     )
 }
 
-export default RandomCocktails;
+export default CocktailResults;

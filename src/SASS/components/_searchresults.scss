@@ -4,8 +4,14 @@
     align-items: center;
     height: 25vh;
     width: 100%;
+
+    .drink-header {
+        color: #ffffff;
+        font-family: 'Playfair Display', serif;
+    }
 }
 
 #hidden {
     display: none;
 }
+

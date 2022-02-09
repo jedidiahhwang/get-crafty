@@ -7,19 +7,26 @@ import {bindActionCreators} from "redux";
 import {actionCreators} from "../redux/actionCreatorExport.js";
 import ClipLoader from "react-spinners/ClipLoader";
 
+import CocktailResults from "./CocktailResults.js";
 import SearchResults from "./SearchResults.js";
 
 import "../SASS/components/_home.scss";
 
 const Home = (props) => {
     const user = useSelector((state) => state.user);
-    
+
+    // Hook for grabbing the user input on the search bar.
     const [drink, setDrink] = useState("");
-    const [apiData, setApiData] = useState();
-    const [isSearched, setIsSearched] = useState(false);
+
+    // Hook for grabbing the API data. This hook will be passed into the CocktailResults component.
+    const [data, setData] = useState();
+
+    // Hooks for rendering the CocktailResult component based on whether it's "hidden" or not, and whether something has been searched.
     const [status, setStatus] = useState("hidden");
+    const [isSearched, setIsSearched] = useState(false);
+
+    // Hooks for the loader.
     let [loading, setLoading] = useState(true);
-    let [color, setColor] = useState("#ffffff");
 
     const handleChange = (event) => {
         setDrink(event.target.value);
@@ -29,34 +36,31 @@ const Home = (props) => {
     const generateCocktail = (event) => {
         event.preventDefault();
 
-        setStatus("hidden");
-        setLoading(true);
-
         if(!drink) {
             console.log("No value input");
         } else {
+            console.log("Sending request to API.");
             axios
                 .get(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${drink}`)
                 .then((res) => {
-                    setApiData(res.data);
                     setIsSearched(true);
 
+                    console.log("Data received.");
+                    setData(res.data);
+
                     const timer = setTimeout(() => {
-                        console.log("Rendered information after 3 seconds");
                         setLoading(false);
                         setStatus("not-hidden");
                     }, 3000);
                 })
                 .catch((err) => {
                     console.log(err);
-                })
-        }
+                });
+        };
     };
 
     const handleIsSearched = (search) => {
-        // setStatus("hidden");
         setDrink("");
-        // setLoading(false);
         setIsSearched(false);
     };
 
@@ -76,9 +80,9 @@ const Home = (props) => {
                     </>
                     : 
                     <>
-                        <ClipLoader color={color} loading={loading} width={300} height={10} margin={5} />
+                        <ClipLoader color="#ffffff" loading={loading} width={300} height={10} margin={5} />
                             <Suspense fallback={<div>Loading</div>}>
-                                <SearchResults drink={drink} apiData={apiData} onExit={handleIsSearched} status={status}/>
+                                
                             </Suspense>
                     </>
                 }   

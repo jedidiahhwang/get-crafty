@@ -10,7 +10,7 @@ const SearchResults = (props) => {
 
     return (
         <div id={props.status}>
-            <h1>You entered {props.drink}</h1>
+            <h4 className="drink-header">{props.drink}</h4>
             <h1>Your data {props.apiData.drinks[0].strDrink}</h1>
             <button onClick={handleChange}>Back</button>
         </div>
