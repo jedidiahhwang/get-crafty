@@ -25,43 +25,61 @@
         font-weight: bolder;
         background: transparent;
 
-
-        h1 {
-            color: #ffffff;
-            font-family: 'Playfair Display', serif;
-            font-size: 3rem;
-            // font-weight: 900;
-            margin: .05em 0; // Play with the margins using em and pixels
-        }
-
-        #form-container {
+        .cocktail-search.hidden {
             display: flex;
-            height: 3rem;
-            width: 100%;
-            transition: 5s ease-out;
-
-            #ingredient-form, #ingredient-label {
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            height: 30vh;
+            width: 75vw;
+            transition: opacity 1s;
+            opacity: 1;
+    
+            #form-container {
                 display: flex;
-                justify-content: center;
+                flex-direction: column;
                 align-items: center;
+                justify-content: center;
+                position: relative;
                 height: 3rem;
                 width: 100%;
-
-                #ingredient-input {
-                    height: 2.5rem;
-                    width: 100%;
-                    border: 1px solid #7878786b;
-                    border-radius: 5px;
-                }
-
-                #ingredient-input::-webkit-input-placeholder {
-                    color: #000000;
+                
+                #form-header {
+                    color: #ffffff;
                     font-family: 'Playfair Display', serif;
-                    font-weight: 400;
-                    font-size: 1rem;
-                    padding: 1rem;
+                    font-size: 3rem;
+                    // font-weight: 900;
+                    margin: .05em 0; // Play with the margins using em and pixels
+                }
+    
+                #ingredient-form, #ingredient-label {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: 3rem;
+                    width: 100%;
+    
+                    #ingredient-input {
+                        height: 2.5rem;
+                        width: 100%;
+                        border: 1px solid #7878786b;
+                        border-radius: 5px;
+                    }
+    
+                    #ingredient-input::-webkit-input-placeholder {
+                        color: #000000;
+                        font-family: 'Playfair Display', serif;
+                        font-weight: 400;
+                        font-size: 1rem;
+                        padding: 1rem;
+                    }
                 }
             }
+        }
+
+        .cocktail-search.not-hidden {
+            opacity: 0;
         }
     }
 } 

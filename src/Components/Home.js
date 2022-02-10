@@ -7,15 +7,15 @@ import {bindActionCreators} from "redux";
 import {actionCreators} from "../redux/actionCreatorExport.js";
 import ClipLoader from "react-spinners/ClipLoader";
 
+import CocktailSearch from "./CocktailSearch.js";
 import CocktailResults from "./CocktailResults.js";
-import SearchResults from "./SearchResults.js";
 
 import "../SASS/components/_home.scss";
 
 const Home = (props) => {
     const user = useSelector((state) => state.user);
 
-    // Hook for grabbing the user input on the search bar.
+    // Hook for grabbing the user input on the search bar. This state is passed to CocktailSearch.
     const [drink, setDrink] = useState("");
 
     // Hook for grabbing the API data. This hook will be passed into the CocktailResults component.
@@ -46,7 +46,7 @@ const Home = (props) => {
                     setIsSearched(true);
 
                     console.log("Data received.");
-                    setData(res.data);
+                    setData(res.data.drinks[0]);
 
                     const timer = setTimeout(() => {
                         setLoading(false);
@@ -64,27 +64,47 @@ const Home = (props) => {
         setIsSearched(false);
     };
 
+    const handleSearchInput = (value) => {
+        setDrink(value);
+    };
+
+    let cocktailSearchStatus = "cocktail-search not-hidden";
+    if(!isSearched) {
+        cocktailSearchStatus = "cocktail-search hidden";
+    } else {
+        cocktailSearchStatus = "cocktail-search not-hidden";
+    }
+
     return ( 
         <div id="home">
             <div id="welcome-box">
                 {!isSearched ? 
-                    <>
-                        <h1>Let's make a drink</h1>
-                        <div id="form-container">
-                            <form id="ingredient-form" onSubmit={generateCocktail}>
-                                <label id="ingredient-label">
-                                    <input id="ingredient-input" type="text" placeholder="Enter a drink name" onChange={handleChange}/>
-                                </label>
-                            </form>
-                        </div>
-                    </>
+                    <CocktailSearch
+                        className={cocktailSearchStatus}
+                        generateCocktail={generateCocktail}
+                        handleSearchInput={handleSearchInput}
+                    />
+                    // <section className={fadeClassName}>
+                    //     <div id="form-container">
+                    //         <h1 id="form-header">Let's make a drink</h1>
+                    //         <form id="ingredient-form" onSubmit={generateCocktail}>
+                    //             <label id="ingredient-label">
+                    //                 <input id="ingredient-input" type="text" placeholder="Enter a drink name" onChange={handleChange}/>
+                    //             </label>
+                    //         </form>
+                    //     </div>
+                    // </section>
                     : 
-                    <>
+                    <section id="results-box">
                         <ClipLoader color="#ffffff" loading={loading} width={300} height={10} margin={5} />
                             <Suspense fallback={<div>Loading</div>}>
-                                
+                                <CocktailResults
+                                    data={data}
+                                    status={status}
+                                    onExit={handleIsSearched} 
+                                />
                             </Suspense>
-                    </>
+                    </section>
                 }   
             </div>
         </div>

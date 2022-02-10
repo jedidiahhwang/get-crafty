@@ -4,9 +4,15 @@ import "../SASS/components/_randomcocktails.scss";
 
 const CocktailResults = (props) => {
 
+    console.log(props.data);
+
+    const handleChange = (event) => {
+        props.onExit();
+    };
+
     return (
         <div id={props.status}>
-            <section id="drink-info-box">
+            {/* <section id="drink-info-box">
             <h4>{props.name}</h4>
             <img
                 id="cocktail-image"
@@ -33,7 +39,8 @@ const CocktailResults = (props) => {
                 <section id="instructions-box">
                     <p>{props.instructions}</p>
                 </section>
-            </section>
+                <button onClick={handleChange}>Back</button>
+            </section> */}
         </div>
     )
 }
