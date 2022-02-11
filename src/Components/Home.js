@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, {useState, Suspense} from "react";
+import React, {useState, Suspense, useEffect} from "react";
 import {useSelector, useDispatch} from "react-redux";
 import {Navigate} from "react-router-dom";
 import {Link} from "react-router-dom";
@@ -19,7 +19,7 @@ const Home = (props) => {
     const [drink, setDrink] = useState("");
 
     // Hook for grabbing the API data. This hook will be passed into the CocktailResults component.
-    const [data, setData] = useState();
+    const [data, setData] = useState({});
 
     // Hooks for rendering the CocktailResult component based on whether it's "hidden" or not, and whether something has been searched.
     const [status, setStatus] = useState("hidden");
@@ -27,6 +27,10 @@ const Home = (props) => {
 
     // Hooks for the loader.
     let [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        
+    }, [data])
 
     const handleChange = (event) => {
         setDrink(event.target.value);
@@ -47,11 +51,6 @@ const Home = (props) => {
 
                     console.log("Data received.");
                     setData(res.data.drinks[0]);
-
-                    const timer = setTimeout(() => {
-                        setLoading(false);
-                        setStatus("not-hidden");
-                    }, 3000);
                 })
                 .catch((err) => {
                     console.log(err);
@@ -94,17 +93,12 @@ const Home = (props) => {
                     //         </form>
                     //     </div>
                     // </section>
-                    : 
-                    <section id="results-box">
-                        <ClipLoader color="#ffffff" loading={loading} width={300} height={10} margin={5} />
-                            <Suspense fallback={<div>Loading</div>}>
-                                <CocktailResults
-                                    data={data}
-                                    status={status}
-                                    onExit={handleIsSearched} 
-                                />
-                            </Suspense>
-                    </section>
+                : 
+                    <CocktailResults
+                        data={data}
+                        status={status}
+                        onExit={handleIsSearched} 
+                    />
                 }   
             </div>
         </div>

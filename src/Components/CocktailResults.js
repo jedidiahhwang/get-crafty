@@ -1,46 +1,91 @@
+import { set } from "mongoose";
 import React, {useEffect, useState} from "react";
 
 import "../SASS/components/_randomcocktails.scss";
 
 const CocktailResults = (props) => {
+    // Hook to set the state of the current drink object from the API.
+    // Proceed to assign the hook from props.
+    const [drinkObject, setDrinkObject] = useState({}); 
 
-    console.log(props.data);
+    // Hooks to store state of the drink properties from the API.
+    const [image, setImage] = useState("");
+    const [name, setName] = useState("");
+    const [ingredients, setIngredients] = useState([]);
+    const [measurements, setMeasurements] = useState([]);
+    const [instructions, setInstructions] = useState("");
+    
+    // Initialize an empty array to push ingredients to. You can then .map() and render.
+    // const drinkIngredients = [];
+    // const drinkMeasurements = [];
+    // for(let prop in drinkObject) {
+    //     if(prop.startsWith("strIngredient") && drinkObject[prop]) {
+    //         drinkIngredients.push(drinkObject[prop]);
+    //     } else if(prop.startsWith("strMeasure") && drinkObject[prop]) {
+    //         drinkMeasurements.push(drinkObject[prop]);
+    //     }
+    //     if(prop === "strInstructions") {
+    //         setInstructions(drinkObject[prop]);
+    //     }
+    // }
+
+    // Use a useEffect() method to assign hooks. This prevents infinite renders and assigns hooks on render.
+    useEffect(() => {
+        setDrinkObject(props.data);
+        setImage(`${drinkObject.strDrinkThumb}/preview`);
+        setName(drinkObject.strDrink);
+        const drinkIngredients = [];
+        const drinkMeasurements = [];
+        for(let prop in drinkObject) {
+            if(prop.startsWith("strIngredient") && drinkObject[prop]) {
+                drinkIngredients.push(drinkObject[prop]);
+            } else if(prop.startsWith("strMeasure") && drinkObject[prop]) {
+                drinkMeasurements.push(drinkObject[prop]);
+            }
+            if(prop === "strInstructions") {
+                // Since the instructions are one big string, assign it once in the for loop.
+                setInstructions(drinkObject[prop]);
+            }
+        }
+
+        // Since the ingredients are an array, assign a preexisting array the values, then use hooks outside of for loop.
+        setIngredients(drinkIngredients);
+    }, []);
 
     const handleChange = (event) => {
         props.onExit();
     };
 
     return (
-        <div id={props.status}>
-            {/* <section id="drink-info-box">
-            <h4>{props.name}</h4>
-            <img
-                id="cocktail-image"
-                src={props.image}
-                alt="Random photo from CocktailDB"
-            />
+        <div>
+            <section id="drink-info-box">
+                <h4>{name}</h4>
+                <img
+                    id="cocktail-image"
+                    src={image}
+                    alt="Random photo from CocktailDB"
+                />
                 <section id="ingredients-box">
                     <h3 className="drink-info-headers">Ingredients</h3>
-                    {props.ingredients.length > 0 ? 
-                        props.ingredients.map(function(element, index) {
-        
+                    {ingredients.length > 0 ? 
+                        ingredients.map(function(element, index) {
                             return <p key={index}>{element}</p>
                         })
                     : null}
                 </section>
-                <section id="measurements-box">
+                {/* <section id="measurements-box">
                     <h3 className="drink-info-headers">Measurements</h3>
-                    {props.measurements.length > 0 ?
-                        props.measurements.map(function(element, index) {
+                    {measurements.length > 0 ?
+                        measurements.map(function(element, index) {
                             return <p key={index}>{element}</p>
                         })
                     : null}
                 </section>
                 <section id="instructions-box">
                     <p>{props.instructions}</p>
-                </section>
+                </section> */}
                 <button onClick={handleChange}>Back</button>
-            </section> */}
+            </section>
         </div>
     )
 }
