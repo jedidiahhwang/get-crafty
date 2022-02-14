@@ -29,13 +29,8 @@ const Home = (props) => {
     let [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        
+        console.log(data);
     }, [data])
-
-    const handleChange = (event) => {
-        setDrink(event.target.value);
-        console.log(event.target.value);
-    };
 
     const generateCocktail = (event) => {
         event.preventDefault();
@@ -50,6 +45,7 @@ const Home = (props) => {
                     setIsSearched(true);
 
                     console.log("Data received.");
+
                     setData(res.data.drinks[0]);
                 })
                 .catch((err) => {
@@ -94,11 +90,18 @@ const Home = (props) => {
                     //     </div>
                     // </section>
                 : 
-                    <CocktailResults
-                        data={data}
-                        status={status}
-                        onExit={handleIsSearched} 
-                    />
+                    <>
+                        {Object.keys(data).length > 0 ?
+                            <CocktailResults
+                            data={data}
+                            status={status}
+                            onExit={handleIsSearched} 
+                        />
+                        : null
+                        }
+                        
+                    </>
+
                 }   
             </div>
         </div>

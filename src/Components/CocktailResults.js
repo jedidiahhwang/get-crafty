@@ -14,37 +14,23 @@ const CocktailResults = (props) => {
     const [ingredients, setIngredients] = useState([]);
     const [measurements, setMeasurements] = useState([]);
     const [instructions, setInstructions] = useState("");
-    
-    // Initialize an empty array to push ingredients to. You can then .map() and render.
-    // const drinkIngredients = [];
-    // const drinkMeasurements = [];
-    // for(let prop in drinkObject) {
-    //     if(prop.startsWith("strIngredient") && drinkObject[prop]) {
-    //         drinkIngredients.push(drinkObject[prop]);
-    //     } else if(prop.startsWith("strMeasure") && drinkObject[prop]) {
-    //         drinkMeasurements.push(drinkObject[prop]);
-    //     }
-    //     if(prop === "strInstructions") {
-    //         setInstructions(drinkObject[prop]);
-    //     }
-    // }
 
     // Use a useEffect() method to assign hooks. This prevents infinite renders and assigns hooks on render.
     useEffect(() => {
-        setDrinkObject(props.data);
-        setImage(`${drinkObject.strDrinkThumb}/preview`);
-        setName(drinkObject.strDrink);
+        console.log(props.data);
+        setImage(`${props.data.strDrinkThumb}/preview`);
+        setName(props.data.strDrink);
         const drinkIngredients = [];
         const drinkMeasurements = [];
         for(let prop in drinkObject) {
             if(prop.startsWith("strIngredient") && drinkObject[prop]) {
-                drinkIngredients.push(drinkObject[prop]);
+                drinkIngredients.push(props.data[prop]);
             } else if(prop.startsWith("strMeasure") && drinkObject[prop]) {
-                drinkMeasurements.push(drinkObject[prop]);
+                drinkMeasurements.push(props.data[prop]);
             }
             if(prop === "strInstructions") {
                 // Since the instructions are one big string, assign it once in the for loop.
-                setInstructions(drinkObject[prop]);
+                setInstructions(props.data[prop]);
             }
         }
 
@@ -73,7 +59,7 @@ const CocktailResults = (props) => {
                         })
                     : null}
                 </section>
-                {/* <section id="measurements-box">
+                <section id="measurements-box">
                     <h3 className="drink-info-headers">Measurements</h3>
                     {measurements.length > 0 ?
                         measurements.map(function(element, index) {
@@ -83,7 +69,7 @@ const CocktailResults = (props) => {
                 </section>
                 <section id="instructions-box">
                     <p>{props.instructions}</p>
-                </section> */}
+                </section>
                 <button onClick={handleChange}>Back</button>
             </section>
         </div>
