@@ -22,7 +22,7 @@ const Home = (props) => {
     const [data, setData] = useState({});
 
     // Hooks for rendering the CocktailResult component based on whether it's "hidden" or not, and whether something has been searched.
-    const [status, setStatus] = useState("hidden");
+    const [status, setStatus] = useState("cocktail-result hidden");
     const [isSearched, setIsSearched] = useState(false);
 
     // Hooks for the loader.
@@ -43,6 +43,7 @@ const Home = (props) => {
                 .get(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${drink}`)
                 .then((res) => {
                     setIsSearched(true);
+                    setStatus("cocktail-result")
 
                     console.log("Data received.");
 
@@ -56,6 +57,7 @@ const Home = (props) => {
 
     const handleIsSearched = (search) => {
         setDrink("");
+        setData({});
         setIsSearched(false);
     };
 
@@ -73,14 +75,15 @@ const Home = (props) => {
     return ( 
         <div id="home">
             <div id="welcome-box">
-                {!isSearched ? 
+
                     <CocktailSearch
                         className={cocktailSearchStatus}
                         generateCocktail={generateCocktail}
                         handleSearchInput={handleSearchInput}
                     />
-                : 
-                    <>
+
+
+                    {/* <>
                         {Object.keys(data).length > 0 ?
                             <CocktailResults
                                 data={data}
@@ -89,8 +92,8 @@ const Home = (props) => {
                             />
                         : null
                         }
-                    </>
-                }   
+                    </> */}
+
             </div>
         </div>
     )

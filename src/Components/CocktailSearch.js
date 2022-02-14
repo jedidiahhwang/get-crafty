@@ -1,6 +1,8 @@
 import React from "react";
 import CocktailResults from "./CocktailResults";
 
+import "../SASS/components/_cocktailsearch.scss";
+
 const CocktailSearch = (props) => {
 
     const handleChange = (event) => {

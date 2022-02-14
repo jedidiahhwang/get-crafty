@@ -39,7 +39,7 @@ const CocktailResults = (props) => {
     };
 
     return (
-        <div id="hidden">
+        <div className={props.status}>
             <section id="drink-info-box">
                 <h4 id="drink-name">{name}</h4>
                 <img

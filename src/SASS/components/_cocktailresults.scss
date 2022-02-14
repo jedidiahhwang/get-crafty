@@ -1,4 +1,4 @@
-#hidden {
+.cocktail-result {
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -6,6 +6,8 @@
     width: 100%;
     background-color: white;
     border-radius: 10px;
+    transition: opacity 1s;
+    opacity: 1;
 
         #drink-info-box {
         display: flex;
