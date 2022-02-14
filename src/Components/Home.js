@@ -79,29 +79,17 @@ const Home = (props) => {
                         generateCocktail={generateCocktail}
                         handleSearchInput={handleSearchInput}
                     />
-                    // <section className={fadeClassName}>
-                    //     <div id="form-container">
-                    //         <h1 id="form-header">Let's make a drink</h1>
-                    //         <form id="ingredient-form" onSubmit={generateCocktail}>
-                    //             <label id="ingredient-label">
-                    //                 <input id="ingredient-input" type="text" placeholder="Enter a drink name" onChange={handleChange}/>
-                    //             </label>
-                    //         </form>
-                    //     </div>
-                    // </section>
                 : 
                     <>
                         {Object.keys(data).length > 0 ?
                             <CocktailResults
-                            data={data}
-                            status={status}
-                            onExit={handleIsSearched} 
-                        />
+                                data={data}
+                                status={status}
+                                onExit={handleIsSearched} 
+                            />
                         : null
                         }
-                        
                     </>
-
                 }   
             </div>
         </div>

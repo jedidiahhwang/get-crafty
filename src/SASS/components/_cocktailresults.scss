@@ -1,0 +1,50 @@
+#hidden {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 25vh;
+    width: 100%;
+    background-color: white;
+    border-radius: 10px;
+
+        #drink-info-box {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        height: 100%;
+        width: 100%;
+
+        #drink-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 16px;
+            font-size: 1.5vw;
+        }
+
+        
+        #ingredients-box, #measurements-box, #instructions-box {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 75%;
+            width: 20%;
+            
+            .drink-results-subheader {
+                font-family: 'Playfair Display', serif;
+                font-size: 16px;
+                font-size: 1.5vw;
+                margin: 0;
+            }
+    
+            .long-text {
+                font-size: 12px;
+                font-size: .75vw;
+            }
+        }
+    }
+
+    #instructions-box {
+        overflow: scroll;
+    }
+}

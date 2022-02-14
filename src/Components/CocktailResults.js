@@ -1,13 +1,8 @@
-import { set } from "mongoose";
 import React, {useEffect, useState} from "react";
 
-import "../SASS/components/_randomcocktails.scss";
+import "../SASS/components/_cocktailresults.scss";
 
 const CocktailResults = (props) => {
-    // Hook to set the state of the current drink object from the API.
-    // Proceed to assign the hook from props.
-    const [drinkObject, setDrinkObject] = useState({}); 
-
     // Hooks to store state of the drink properties from the API.
     const [image, setImage] = useState("");
     const [name, setName] = useState("");
@@ -22,10 +17,10 @@ const CocktailResults = (props) => {
         setName(props.data.strDrink);
         const drinkIngredients = [];
         const drinkMeasurements = [];
-        for(let prop in drinkObject) {
-            if(prop.startsWith("strIngredient") && drinkObject[prop]) {
+        for(let prop in props.data) {
+            if(prop.startsWith("strIngredient") && props.data[prop]) {
                 drinkIngredients.push(props.data[prop]);
-            } else if(prop.startsWith("strMeasure") && drinkObject[prop]) {
+            } else if(prop.startsWith("strMeasure") && props.data[prop]) {
                 drinkMeasurements.push(props.data[prop]);
             }
             if(prop === "strInstructions") {
@@ -34,41 +29,42 @@ const CocktailResults = (props) => {
             }
         }
 
-        // Since the ingredients are an array, assign a preexisting array the values, then use hooks outside of for loop.
+        // Since the ingredients and measurements are an array, assign a preexisting array the values, then use hooks outside of for loop.
         setIngredients(drinkIngredients);
+        setMeasurements(drinkMeasurements);
     }, []);
 
-    const handleChange = (event) => {
+    const handleChange = () => {
         props.onExit();
     };
 
     return (
-        <div>
+        <div id="hidden">
             <section id="drink-info-box">
-                <h4>{name}</h4>
+                <h4 id="drink-name">{name}</h4>
                 <img
                     id="cocktail-image"
                     src={image}
                     alt="Random photo from CocktailDB"
                 />
                 <section id="ingredients-box">
-                    <h3 className="drink-info-headers">Ingredients</h3>
+                <h4 className="drink-results-subheader">Ingredients</h4>
                     {ingredients.length > 0 ? 
                         ingredients.map(function(element, index) {
-                            return <p key={index}>{element}</p>
+                            return <p id="ingredients-text" className="long-text" key={index}>{element}</p>
                         })
                     : null}
                 </section>
                 <section id="measurements-box">
-                    <h3 className="drink-info-headers">Measurements</h3>
+                <h4 className="drink-results-subheader">Measurements</h4>
                     {measurements.length > 0 ?
                         measurements.map(function(element, index) {
-                            return <p key={index}>{element}</p>
+                            return <p id="measurements-text" className="long-text" key={index}>{element}</p>
                         })
                     : null}
                 </section>
                 <section id="instructions-box">
-                    <p>{props.instructions}</p>
+                    <p id="instructions-text" className="long-text">{instructions}</p>
                 </section>
                 <button onClick={handleChange}>Back</button>
             </section>
