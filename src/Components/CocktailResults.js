@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from "react";
+import axios from "axios";
 
 import "../SASS/components/_cocktailresults.scss";
 
@@ -12,26 +13,41 @@ const CocktailResults = (props) => {
 
     // Use a useEffect() method to assign hooks. This prevents infinite renders and assigns hooks on render.
     useEffect(() => {
-        console.log(props.data);
-        setImage(`${props.data.strDrinkThumb}/preview`);
-        setName(props.data.strDrink);
-        const drinkIngredients = [];
-        const drinkMeasurements = [];
-        for(let prop in props.data) {
-            if(prop.startsWith("strIngredient") && props.data[prop]) {
-                drinkIngredients.push(props.data[prop]);
-            } else if(prop.startsWith("strMeasure") && props.data[prop]) {
-                drinkMeasurements.push(props.data[prop]);
-            }
-            if(prop === "strInstructions") {
-                // Since the instructions are one big string, assign it once in the for loop.
-                setInstructions(props.data[prop]);
-            }
-        }
+        console.log(props.drinkName);
+        setTimeout(() => {
+            console.log("Rendered information after 3 seconds");
+            axios
+            .get(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${props.drinkName}`)
+            .then((res) => {
+                console.log("Data received.");
 
-        // Since the ingredients and measurements are an array, assign a preexisting array the values, then use hooks outside of for loop.
-        setIngredients(drinkIngredients);
-        setMeasurements(drinkMeasurements);
+                setName(res.data.drinks[0].strDrink);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+            // setLoading(false);
+        }, 1500);
+    
+        // setImage(`${props.data.strDrinkThumb}/preview`);
+        // setName(props.data.strDrink);
+        // const drinkIngredients = [];
+        // const drinkMeasurements = [];
+        // for(let prop in props.data) {
+        //     if(prop.startsWith("strIngredient") && props.data[prop]) {
+        //         drinkIngredients.push(props.data[prop]);
+        //     } else if(prop.startsWith("strMeasure") && props.data[prop]) {
+        //         drinkMeasurements.push(props.data[prop]);
+        //     }
+        //     if(prop === "strInstructions") {
+        //         // Since the instructions are one big string, assign it once in the for loop.
+        //         setInstructions(props.data[prop]);
+        //     }
+        // }
+
+        // // Since the ingredients and measurements are an array, assign a preexisting array the values, then use hooks outside of for loop.
+        // setIngredients(drinkIngredients);
+        // setMeasurements(drinkMeasurements);
     }, []);
 
     const handleChange = () => {
@@ -39,10 +55,10 @@ const CocktailResults = (props) => {
     };
 
     return (
-        <div className={props.status}>
+        <div id="cocktail-result">
             <section id="drink-info-box">
                 <h4 id="drink-name">{name}</h4>
-                <img
+                {/* <img
                     id="cocktail-image"
                     src={image}
                     alt="Random photo from CocktailDB"
@@ -66,7 +82,7 @@ const CocktailResults = (props) => {
                 <section id="instructions-box">
                     <p id="instructions-text" className="long-text">{instructions}</p>
                 </section>
-                <button onClick={handleChange}>Back</button>
+                <button onClick={handleChange}>Back</button> */}
             </section>
         </div>
     )

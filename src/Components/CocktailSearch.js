@@ -10,7 +10,7 @@ const CocktailSearch = (props) => {
     };
 
     return (
-        <section className={props.className}>
+        <section className="visible">
             <div id="form-container">
                 <h1 id="form-header">Let's make a drink</h1>
                 <form id="ingredient-form" onSubmit={props.generateCocktail}>

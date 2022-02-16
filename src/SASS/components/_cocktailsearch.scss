@@ -1,6 +1,4 @@
-@use "../variables/_fadein.scss";
-
-.cocktail-search.hidden {
+.visible{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -8,11 +6,6 @@
     position: relative;
     height: 30vh;
     width: 75vw;
-    -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
-    -moz-animation: fadein 2s; /* Firefox < 16 */
-     -ms-animation: fadein 2s; /* Internet Explorer */
-      -o-animation: fadein 2s; /* Opera < 12.1 */
-         animation: fadein 2s;
 
     #form-container {
         display: flex;
