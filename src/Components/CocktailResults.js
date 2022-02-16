@@ -10,9 +10,11 @@ const CocktailResults = (props) => {
     const [ingredients, setIngredients] = useState([]);
     const [measurements, setMeasurements] = useState([]);
     const [instructions, setInstructions] = useState("");
-    const [status, setStatus] = useState(false);
 
-    // Use a useEffect() method to assign hooks. This prevents infinite renders and assigns hooks on render.
+    // Hook to manage when the component will be rendered. This is to account for the picture loading slower.
+    const [status, setStatus] = useState("cocktail-result hidden");
+
+    // Use a useEffect() method to send API request and assign hooks.
     useEffect(() => {
         console.log(props.drinkName);
         axios
@@ -24,7 +26,7 @@ const CocktailResults = (props) => {
                 setImage(`${res.data.drinks[0].strDrinkThumb}/preview`);
                 const drinkIngredients = [];
                 const drinkMeasurements = [];
-                for(let prop in props.data) {
+                for(let prop in res.data.drinks[0]) {
                     if(prop.startsWith("strIngredient") && res.data.drinks[0][prop]) {
                         drinkIngredients.push(res.data.drinks[0][prop]);
                     } else if(prop.startsWith("strMeasure") && res.data.drinks[0][prop]) {
@@ -42,10 +44,11 @@ const CocktailResults = (props) => {
             .catch((err) => {
                 console.log(err);
             });
-            // setLoading(false);
+        
+        // The following setTimeout is to make the component wait to actually appear, that way the picture and text appear simultaneously.
         setTimeout(() => {
-            setStatus(true);
-        }, 1500)
+            setStatus("cocktail-result");
+        }, 3000)
     }, []);
 
     const handleChange = () => {
@@ -53,40 +56,37 @@ const CocktailResults = (props) => {
     };
 
     return (
-        <div id="cocktail-result">
-            <section id="drink-info-box">
-                {status ? 
-                <>
+        <div id="cocktail-result-container">
+            {status === "cocktail-result" ? 
+                <section id="cocktail-result">
                     <h4 id="drink-name">{name}</h4>
                     <img
                         id="cocktail-image"
                         src={image}
                         alt="Random photo from CocktailDB"
                     />
-                </>
-                : null}
-
-                <section id="ingredients-box">
-                <h4 className="drink-results-subheader">Ingredients</h4>
-                    {ingredients.length > 0 ? 
-                        ingredients.map(function(element, index) {
-                            return <p id="ingredients-text" className="long-text" key={index}>{element}</p>
-                        })
-                    : null}
+                    <section id="ingredients-box">
+                    <h4 className="drink-results-subheader">Ingredients</h4>
+                        {ingredients.length > 0 ? 
+                            ingredients.map(function(element, index) {
+                                return <p id="ingredients-text" className="long-text" key={index}>{element}</p>
+                            })
+                        : null}
+                    </section>
+                    <section id="measurements-box">
+                    <h4 className="drink-results-subheader">Measurements</h4>
+                        {measurements.length > 0 ?
+                            measurements.map(function(element, index) {
+                                return <p id="measurements-text" className="long-text" key={index}>{element}</p>
+                            })
+                        : null}
+                    </section>
+                    <section id="instructions-box">
+                        <p id="instructions-text" className="long-text">{instructions}</p>
+                    </section>
+                    <button onClick={handleChange}>Back</button>
                 </section>
-                {/* <section id="measurements-box">
-                <h4 className="drink-results-subheader">Measurements</h4>
-                    {measurements.length > 0 ?
-                        measurements.map(function(element, index) {
-                            return <p id="measurements-text" className="long-text" key={index}>{element}</p>
-                        })
-                    : null}
-                </section>
-                <section id="instructions-box">
-                    <p id="instructions-text" className="long-text">{instructions}</p>
-                </section> */}
-                <button onClick={handleChange}>Back</button>
-            </section>
+            : null}
         </div>
     )
 }
