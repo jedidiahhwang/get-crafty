@@ -29,13 +29,13 @@
             justify-content: center;
             align-items: center;
             height: 3rem;
-            width: 100%;
+            width: 85%;
 
             #ingredient-input {
                 height: 2.5rem;
                 width: 100%;
                 border: 1px solid #7878786b;
-                border-radius: 5px;
+                border-radius: 5px 0 0 5px;
             }
 
             #ingredient-input::-webkit-input-placeholder {
@@ -44,6 +44,34 @@
                 font-weight: 400;
                 font-size: 1rem;
                 padding: 1rem;
+            }
+
+            #search-button-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background: #ffffff;
+                height: 2.65rem;
+                width: 7%;
+                border-top: 1px solid #7878786b;
+                border-right: 1px solid #7878786b;
+                border-bottom: 1px solid #7878786b;
+                border-left: none;
+                border-radius: 0 5px 5px 0;
+
+                #search-button {
+                    background: transparent;
+                    border: none;
+                    transition: all .2s ease-out;
+                }
+
+                #search-button:hover {
+                    position: relative;
+                    transform: scale(1.2);
+                    cursor: pointer;
+                    overflow: visible;
+                    z-index: 100;
+                }
             }
         }
     }
