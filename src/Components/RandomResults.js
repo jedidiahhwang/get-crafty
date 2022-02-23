@@ -7,7 +7,7 @@ import "../SASS/components/_cocktailspage.scss";
 
 const CocktailResults = React.lazy(() => import("./CocktailResults.js"));
 
-const CocktailsPage = () => {
+const RandomResults = () => {
 
     const [status, setStatus] = useState(false);
     const [image, setImage] = useState("");
@@ -79,12 +79,8 @@ const CocktailsPage = () => {
                     <SyncLoader color={color} loading={loading} width={300} height={10} margin={5} />
                     <Suspense fallback={<div>Loading</div>}>
                         <CocktailResults
-                            image={image}
-                            name={name}
-                            ingredients={ingredients}
-                            measurements={measurements}
-                            instructions={instructions}
-                            status={status}
+                            drinkName={drink}
+                            onExit={handleIsSearched} 
                         />
                     </Suspense>
                 </div>
@@ -93,4 +89,4 @@ const CocktailsPage = () => {
     )
 }
 
-export default CocktailsPage;
+export default RandomResults;

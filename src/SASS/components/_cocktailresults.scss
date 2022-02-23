@@ -23,6 +23,12 @@
             font-size: 1.5vw;
         }
 
+        #placeholder {
+            width: 500px;
+            height: 500px;
+            background-color: blue;
+        }
+
         #ingredients-box, #measurements-box, #instructions-box {
             display: flex;
             flex-direction: column;

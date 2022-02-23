@@ -5,6 +5,7 @@ import HomePage from "../pages/homepage";
 import LoginPage from "../pages/loginpage";
 import RegisterPage from "../pages/registerpage";
 import UserPage from "../pages/userpage";
+import RandomPage from "../pages/randompage";
 
 import AuthenticatedRoutes from "./AuthenticatedRoutes";
 
@@ -21,5 +22,6 @@ export default (
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/userpage" element={<AuthenticatedRoutes component={<UserPage />} />} />
+        <Route path="/random" element={<RandomPage />} />
     </Routes>
 )
