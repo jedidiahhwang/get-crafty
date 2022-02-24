@@ -1,9 +1,8 @@
 import React, {useEffect, useState, Suspense} from "react";
 import axios from "axios";
-import LazyLoad from "react-lazy-load";
 
 import "../SASS/components/_cocktailresults.scss";
-import loadingGif from "../images/loading.gif";
+import loadingGif from "../images/pouring.gif";
 
 const CocktailResults = (props) => {
     // Hooks to store state of the drink properties from the API.
@@ -45,6 +44,11 @@ const CocktailResults = (props) => {
 
                 setIngredients(drinkIngredients);
                 setMeasurements(drinkMeasurements);
+
+                setTimeout(() => {
+                    setStatus("inline");
+                    console.log("Image displayed.");
+                }, 1000)
             })
             .catch((err) => {
                 console.log(err);
@@ -78,7 +82,7 @@ const CocktailResults = (props) => {
                 setTimeout(() => {
                     setStatus("inline");
                     console.log("Image displayed.");
-                }, 500)
+                }, 1000)
             })
             .catch((err) => {
                 console.log(err);
@@ -98,7 +102,9 @@ const CocktailResults = (props) => {
                 {
                     status === "none" ?
                     <img
+                        id="loading-gif"
                         src={loadingGif}
+                        alt="loading gif"
                     />
                     :
                     <img
