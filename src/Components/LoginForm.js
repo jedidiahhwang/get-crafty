@@ -31,13 +31,26 @@ const LoginForm = () => {
             })
             .catch((err) => {
                 console.log("Request did not go through");
-                console.log(err);
+                console.log(err.response.data);
             })
     }
 
-    if(user.isLoggedIn) {
-        return <Navigate to="/userpage" />
+    const userLogout = (e) => {
+        e.preventDefault();
+
+        axios
+            .post("/auth/logout")
+            .then((res) => {
+                console.log(res.data);
+            })
+            .catch((err) => {
+                console.log(err.response);
+            });
     }
+
+    // if(user.isLoggedIn) {
+    //     return <Navigate to="/userpage" />
+    // }
 
     return (
         <div id="login-form-container">
@@ -53,6 +66,7 @@ const LoginForm = () => {
                 </label>
                 <button type="submit" onClick={userLogin}>Submit</button>
             </form>
+            <button onClick={userLogout}>Logout</button>
             <>
                 {/* {user.isLoggedIn && user.email ?
                     <Navigate to="/userpage" />
