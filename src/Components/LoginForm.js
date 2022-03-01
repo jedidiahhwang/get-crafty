@@ -1,13 +1,14 @@
 import axios from "axios";
 import React, {useState} from "react";
-import {Navigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {useSelector, useDispatch} from "react-redux";
 import {bindActionCreators} from "redux";
 import {actionCreators} from "../redux/actionCreatorExport.js";
 
 import "../SASS/components/_loginform.scss";
 
-const LoginForm = () => {
+const LoginForm = (props) => {
+    let navigate = useNavigate();
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -28,6 +29,7 @@ const LoginForm = () => {
                 setCurrentUser(res.data);
                 login(res.data.email);
                 console.log("Logged in");
+                navigate("/userpage");
             })
             .catch((err) => {
                 console.log("Request did not go through");
@@ -42,15 +44,12 @@ const LoginForm = () => {
             .post("/auth/logout")
             .then((res) => {
                 console.log(res.data);
+                logout();
             })
             .catch((err) => {
-                console.log(err.response);
+                console.log(err.response.data);
             });
     }
-
-    // if(user.isLoggedIn) {
-    //     return <Navigate to="/userpage" />
-    // }
 
     return (
         <div id="login-form-container">
@@ -67,11 +66,6 @@ const LoginForm = () => {
                 <button type="submit" onClick={userLogin}>Submit</button>
             </form>
             <button onClick={userLogout}>Logout</button>
-            <>
-                {/* {user.isLoggedIn && user.email ?
-                    <Navigate to="/userpage" />
-                : null } */}
-            </>
         </div>
     )
 }

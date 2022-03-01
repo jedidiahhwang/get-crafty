@@ -7,7 +7,6 @@ import ingredientsImage from "../images/icons/icons8-lemon-60.png";
 import registerImage from "../images/icons/icons8-arrow-60.png";
 
 const AboutPage = () => {
-
     let navigate = useNavigate();
 
     const routeRandomCocktails = () => {

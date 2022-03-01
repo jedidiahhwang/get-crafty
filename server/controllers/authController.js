@@ -49,8 +49,13 @@ module.exports = {
         return res.status(200).send(returnUser);
     },
     logout: async (req, res) => {
-        req.session.destroy();
-        res.status(200).send("User has logged out");
+        if(req.session.user) {
+            console.log(req.session);
+            req.session.destroy();
+            return res.status(200).send("User has logged out");
+        } else {
+            return res.status(400).send("No user is logged in");
+        }
     },
     register: async (req, res) => {
         const {email, password} = req.body;

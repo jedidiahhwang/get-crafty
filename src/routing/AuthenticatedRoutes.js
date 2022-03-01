@@ -1,26 +1,28 @@
 import React from "react";
-import {Route, Navigate} from "react-router-dom";
+import {Route, Routes, Navigate, Outlet} from "react-router-dom";
 
-const AuthenticatedRoutes = ({component: Component, ...rest}) => {
+const AuthenticatedRoutes = ({children}) => {
+    let userExist = localStorage.getItem("user");
 
     return (
-        <Route 
-            {...rest} 
-            render={(props) => {
-                if(rest.isLoggedIn) {
-                    return <Component {...props}/>;
-                } else {
-                    return <Navigate to={
-                        {
-                            pathname: "/login",
-                            state: {
-                                from: props.location
-                            }
-                        }
-                    } />
-                } 
-            }}
-        />
+        userExist ? children : <Navigate to="/" />
+            // <Route 
+            //     {...rest} 
+            //     render={(props) => {
+            //         if(rest.isLoggedIn) {
+            //             return <Component {...props}/>;
+            //         } else {
+            //             return <Navigate to={
+            //                 {
+            //                     pathname: "/login",
+            //                     state: {
+            //                         from: props.location
+            //                     }
+            //                 }
+            //             } />
+            //         } 
+            //     }}
+            // />
     )
 }
 

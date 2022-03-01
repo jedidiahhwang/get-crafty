@@ -21,7 +21,7 @@ export default (
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
-        {/* <Route path="/userpage" element={<AuthenticatedRoutes component={<UserPage />} />} /> */}
+        <Route path="/userpage" element={<AuthenticatedRoutes> <UserPage /></AuthenticatedRoutes>} />
         <Route path="/random" element={<RandomPage />} />
     </Routes>
 )
