@@ -2,10 +2,10 @@ import React from "react";
 import {Route, Routes, Navigate, Outlet} from "react-router-dom";
 
 const AuthenticatedRoutes = ({children}) => {
-    let userExist = localStorage.getItem("user");
+    let userExist = localStorage.getItem("persist:user");
 
     return (
-        userExist ? children : <Navigate to="/" />
+        userExist ? children : <Navigate to="/" /> 
             // <Route 
             //     {...rest} 
             //     render={(props) => {
