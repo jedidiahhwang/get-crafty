@@ -1,0 +1,38 @@
+#user-drinks-container {
+    display: flex;
+    background-color: grey;
+    justify-content: center;
+    // align-items: center;
+    margin: 0;
+    padding: 0;
+    height: 90vh;
+    width: 100%;
+
+    #user-drinks {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        width: 100%;
+
+        .add-button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 1%;
+            padding: 0;
+            border-radius: 10%;
+            opacity: 80%;
+            height: 25vh;
+            width: 15%;
+            cursor: pointer;
+
+            .icon {
+                cursor: pointer;
+            }
+        }
+    }
+}

@@ -7,8 +7,6 @@ import {bindActionCreators} from "redux";
 import {actionCreators} from "../redux/actionCreatorExport.js";
 import axios from "axios";
 
-import Modal from "./SubComponents/Modal.js";
-
 import "../SASS/components/_header.scss";
 import logo from "../images/icons/icons8-glass-of-whiskey-50.png";
 
@@ -50,14 +48,6 @@ const Header = (props) => {
                 <Link to="/login" className="header-links">Login</Link>
                 <Link to="/register" className="header-links">Register</Link>
             </section>
-            <>
-                {user.isLoggedIn && user.email ? 
-                    <h1>{user.email}</h1>
-                    : null}
-            </>
-            <>
-                <Modal show={open} />
-            </>
         </Headroom>
     )
 }

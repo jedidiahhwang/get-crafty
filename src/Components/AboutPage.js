@@ -7,6 +7,8 @@ import ingredientsImage from "../images/icons/icons8-lemon-60.png";
 import registerImage from "../images/icons/icons8-arrow-60.png";
 
 const AboutPage = () => {
+    const [isSearched, setIsSearched] = useState(false)
+
     let navigate = useNavigate();
 
     const routeRandomCocktails = () => {
@@ -19,6 +21,10 @@ const AboutPage = () => {
 
     const routeRegister = () => {
         navigate("/register")
+    };
+
+    const handleIsSearched = (search) => {
+        setIsSearched(false);
     };
 
     return (

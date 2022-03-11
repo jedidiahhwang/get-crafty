@@ -68,6 +68,8 @@ const RandomResults = () => {
         randomCocktail();
     }, []) 
 
+    
+
     return (
         <div id="cocktails-page">
             <h2 className="subheaders">Feeling lucky? Here's a random cocktail.</h2>
