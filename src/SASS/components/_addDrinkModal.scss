@@ -1,5 +1,8 @@
 .modal {
     position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     left: 0;
     right: 0;
     top: 0;
@@ -10,4 +13,14 @@
     justify-self: center;
     width: 100vw;
     height: 100vh;
+
+    .modal-content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #ffffff;
+        border-radius: 10px;
+        width: 75%;
+        height: 50%;
+    }
 }

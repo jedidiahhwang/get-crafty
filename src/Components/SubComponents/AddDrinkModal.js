@@ -11,24 +11,35 @@ import ReactDOM from "react-dom";
 
 import "../../SASS/components/_addDrinkModal.scss";
 
-const AddDrinkModal = ({isShowing, toggle}) => isShowing ? ReactDOM.createPortal(
-    <>
-        <div className="modal">
-            <div className="modal-content">
-                <div className="modal-header">
-                    <h4 className="modal-title">How Do You Want to Make Your Drink?</h4>
-                </div>
-                <div className="modal-body">
-                    This is modal content
-                </div>
-                <div className="modal-footer">
-                    <button className="button" onClick={toggle}>
-                        <span>&times;</span>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </>, document.body
-) : null;
+const AddDrinkModal = ({isShowing, toggle}) => {
+
+    if(isShowing) {
+        return (
+            ReactDOM.createPortal(
+                <>
+                    <div className="modal">
+                        <div className="modal-content">
+                            <h4 className="modal-title">How Do You Want to Make Your Drink?</h4>
+                            <div className="modal-body">
+                                <button className="about-buttons" id="about-random-button">Random Drinks</button>
+                                <button className="about-buttons" id="about-ingredients-button">Search Drinks</button>
+                                <button className="about-buttons" id="about-ingredients-button">List Ingredients</button>
+                            </div>
+                            <div className="modal-footer">
+                                <button className="button" onClick={toggle}>
+                                    <span>&times;</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </>, document.body
+            )
+        )
+    } else {
+        return (
+            null
+        );
+    }
+}
 
 export default AddDrinkModal
