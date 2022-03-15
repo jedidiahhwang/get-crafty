@@ -6,31 +6,62 @@
     outside of its parent component, which helps with styling and accessibility.
 */
 
-import React from "react";
+import React, {useState} from "react";
 import ReactDOM from "react-dom";
+
+import CocktailResults from "../CocktailResults.js";
 
 import "../../SASS/components/_addDrinkModal.scss";
 
 const AddDrinkModal = ({isShowing, toggle}) => {
+    const [selectionState, setSelectionState] = useState("");
+
+    const handleClick = (event) => {
+        switch (event.target.id) {
+            case "random-button":
+                console.log("selectionState is random");
+                setSelectionState("random");
+                break;
+            case "search-button":
+                console.log("selectionState is search");
+                setSelectionState("search");
+                break;
+            case "ingredients-button":
+                console.log("selectionState is ingredients");
+                setSelectionState("ingredients");
+                break;
+            case "exit-button":
+                console.log("selectionState is empty");
+                setSelectionState("");
+                toggle();
+                break;
+        };
+    }
+
 
     if(isShowing) {
         return (
             ReactDOM.createPortal(
                 <>
                     <div className="modal">
-                        <div className="modal-content">
-                            <h4 className="modal-title">How Do You Want to Make Your Drink?</h4>
-                            <div className="modal-body">
-                                <button className="about-buttons" id="about-random-button">Random Drinks</button>
-                                <button className="about-buttons" id="about-ingredients-button">Search Drinks</button>
-                                <button className="about-buttons" id="about-ingredients-button">List Ingredients</button>
+                        {
+                            selectionState === "random" ? 
+                            <CocktailResults />
+                            :
+                            <div className="modal-content">
+                                <h4 className="modal-title">How Do You Want to Make Your Drink?</h4>
+                                <div className="modal-body">
+                                    <button className="about-buttons" id="random-button" onClick={handleClick}>Random Drinks</button>
+                                    <button className="about-buttons" id="search-button" onClick={handleClick}>Search Drinks</button>
+                                    <button className="about-buttons" id="ingredients-button" onClick={handleClick}>List Ingredients</button>
+                                </div>
                             </div>
-                            <div className="modal-footer">
-                                <button className="button" onClick={toggle}>
-                                    <span>&times;</span>
-                                </button>
-                            </div>
-                        </div>
+                        }
+                    <div className="modal-footer">
+                        <button className="button" id="exit-button" onClick={handleClick}>
+                            <span>&times;</span>
+                        </button>
+                    </div>
                     </div>
                 </>, document.body
             )

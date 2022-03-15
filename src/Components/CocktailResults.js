@@ -18,7 +18,6 @@ const CocktailResults = (props) => {
 
     // Use a useEffect() method to send API request and assign hooks.
     useEffect(() => {
-        console.log(props.drinkName);
         if(props.drinkName) {
             axios
             .get(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${props.drinkName}`)
