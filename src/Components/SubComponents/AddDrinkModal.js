@@ -17,6 +17,10 @@ const AddDrinkModal = ({isShowing, toggle}) => {
     const [selectionState, setSelectionState] = useState("");
 
     const handleClick = (event) => {
+        event.preventDefault();
+        console.log("Click hit")
+        console.log(event.target);
+
         switch (event.target.id) {
             case "random-button":
                 console.log("selectionState is random");
@@ -57,11 +61,9 @@ const AddDrinkModal = ({isShowing, toggle}) => {
                                 </div>
                             </div>
                         }
-                    <div className="modal-footer">
                         <button className="button" id="exit-button" onClick={handleClick}>
-                            <span>&times;</span>
+                            x
                         </button>
-                    </div>
                     </div>
                 </>, document.body
             )
