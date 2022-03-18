@@ -17,8 +17,9 @@ module.exports = {
         }
     },
     addRecipe: async (req, res) => {
+        console.log(req.session.user);
         if(!req.session.user) {
-            return res.status(400).send("No user is logged in");
+            return res.status(400).send(req.session.user);
         } else {
             // Grab the current user using the session user's email.
             const currentUser = await User.findOne({email: req.session.user.email});

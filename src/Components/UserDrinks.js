@@ -9,8 +9,6 @@ import "../SASS/components/_userdrinks.scss";
 const UserDrinks = () => {
     const {isShowing, toggle} = UseDrinkModal();
 
-    const user = useSelector((state) => state.user);
-
     return (
         <div id="user-drinks-container">
             <section id="user-drinks">

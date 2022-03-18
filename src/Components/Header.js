@@ -19,17 +19,6 @@ const Header = (props) => {
 
     const {login, logout} = bindActionCreators(actionCreators, dispatch);
 
-    const loginUser = () => {
-        axios.post("/auth/login", {email: "sehgalsasha711@gmail.com", password: "123456"})
-            .then((res) => {
-                setCurrentUser(res.data);
-                login(res.data.email);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-    };
-
     const handleClick = (e) => {
         setOpen(true);
     };
@@ -47,6 +36,7 @@ const Header = (props) => {
                 <Link to="/about" className="header-links">About</Link>
                 <Link to="/login" className="header-links">Login</Link>
                 <Link to="/register" className="header-links">Register</Link>
+                <Link to="/" className="header-links" onClick={logout}>Logout</Link>
             </section>
         </Headroom>
     )

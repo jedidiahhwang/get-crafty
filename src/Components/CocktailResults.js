@@ -1,12 +1,14 @@
 import React, {useEffect, useState, Suspense} from "react";
 import axios from "axios";
+import {useSelector} from "react-redux";
 
 import "../SASS/components/_cocktailresults.scss";
 import loadingGif from "../images/pouring.gif";
 
 const CocktailResults = (props) => {
     // Hooks to store state of the drink properties from the API.
-    const [data, setData] = useState();
+    const [data, setData] = useState(); // Using this hook to conditionally render CocktailResults
+    const [idDrink, setIdDrink] = useState();
     const [image, setImage] = useState("");
     const [name, setName] = useState("");
     const [ingredients, setIngredients] = useState([]);
@@ -15,6 +17,9 @@ const CocktailResults = (props) => {
 
     // Hook to manage when the component will be rendered. This is to account for the picture loading slower.
     const [status, setStatus] = useState("none");
+
+    const user = useSelector((state) => state.user);
+    console.log(user);
 
     // Use a useEffect() method to send API request and assign hooks.
     useEffect(() => {
@@ -25,6 +30,7 @@ const CocktailResults = (props) => {
                 console.log("Data received.");
 
                 setData(res.data);
+                setIdDrink(res.data.drinks[0].idDrink)
                 setName(res.data.drinks[0].strDrink);
                 setImage(`${res.data.drinks[0].strDrinkThumb}/preview`);
                 const drinkIngredients = [];
@@ -59,6 +65,7 @@ const CocktailResults = (props) => {
                 console.log("Data received.");
 
                 setData(res.data);
+                setIdDrink(res.data.drinks[0].idDrink)
                 setName(res.data.drinks[0].strDrink);
                 setImage(`${res.data.drinks[0].strDrinkThumb}/preview`);
                 const drinkIngredients = [];
@@ -77,10 +84,23 @@ const CocktailResults = (props) => {
 
                 setIngredients(drinkIngredients);
                 setMeasurements(drinkMeasurements);
+                // setData({
+                //     idDrink,
+                //     name,
+                //     ingredients,
+                //     instructions
+                // });
 
                 setTimeout(() => {
                     setStatus("inline");
                     console.log("Image displayed.");
+                    const recipeObj = {
+                        idDrink: res.data.drinks[0].idDrink,
+                        name,
+                        ingredients,
+                        instructions
+                    };
+    
                 }, 1000)
             })
             .catch((err) => {
@@ -92,6 +112,37 @@ const CocktailResults = (props) => {
     const handleChange = () => {
         props.onExit();
     };
+
+    const addDrink = () => {
+        if(user.email) {
+            // console.log(idDrink);
+            // console.log(name);
+            // console.log(ingredients);
+            // console.log(instructions);
+
+            const drinkObj = {
+                idDrink,
+                name,
+                ingredients,
+                instructions
+            };
+
+            console.log(drinkObj);
+
+            axios.post("/drinks/recipe", drinkObj)
+                .then((res) => {
+                    console.log(res.data);
+                    console.log("Drink successfully added");
+                })
+                .catch((err) => {
+                    console.log(err);
+                    console.log(err.response);
+                });
+        } else {
+            alert("You must be logged in to save drinks");
+        }
+    }
+
 
     return (
         <div id="cocktail-result-container">
@@ -133,6 +184,7 @@ const CocktailResults = (props) => {
                     <p id="instructions-text" className="long-text">{instructions}</p>
                 </section>
                 <button onClick={handleChange}>Back</button>
+                <button onClick={addDrink}>Add Drink</button>
             </section>
             : null}
         </div>

@@ -8,6 +8,7 @@
 
 import React, {useState} from "react";
 import ReactDOM from "react-dom";
+import {useSelector, useDispatch} from "react-redux";
 
 import CocktailResults from "../CocktailResults.js";
 
@@ -15,6 +16,8 @@ import "../../SASS/components/_addDrinkModal.scss";
 
 const AddDrinkModal = ({isShowing, toggle}) => {
     const [selectionState, setSelectionState] = useState("");
+
+    const user = useSelector((state) => state.user);
 
     const handleClick = (event) => {
         event.preventDefault();

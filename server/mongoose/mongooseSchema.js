@@ -10,7 +10,7 @@ const userSchema = new mongoose.Schema({
         recipe = {
             idDrink: Number,
             name: String,
-            ingredients: String,
+            ingredients: [],
             instructions: String
         }
     ]
