@@ -1,13 +1,32 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import {useSelector, useDispatch} from "react-redux";
+import axios from "axios";
 
 import AddDrinkModal from "./SubComponents/AddDrinkModal.js";
 import UseDrinkModal from "./SubComponents/UseDrinkModal.js";
+import DrinkCardModal from "./SubComponents/DrinkCardModal.js";
 
 import "../SASS/components/_userdrinks.scss";
 
 const UserDrinks = () => {
+    const [userDrinks, setUserDrinks] = useState([]);
+
     const {isShowing, toggle} = UseDrinkModal();
+
+    const user = useSelector((state) => state.user);
+
+    console.log(user);
+
+    useEffect(() => {
+        axios.get("/drinks/recipe")
+            .then((res) => {
+                console.log(res.data);
+                setUserDrinks(res.data);
+            })
+            .catch((err) => {
+                console.log(err.response);
+            });
+    }, [])
 
     return (
         <div id="user-drinks-container">
@@ -20,6 +39,13 @@ const UserDrinks = () => {
                     </svg>
                 </button>
                 <AddDrinkModal isShowing={isShowing} toggle={toggle} />
+                <>
+                {userDrinks.length > 0 ? 
+                        userDrinks.map(function(element, index) {
+                            return <DrinkCardModal image={element.image} key={index} />
+                        })
+                    : null}
+                </>
             </section>
         </div>
     )

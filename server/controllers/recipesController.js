@@ -17,7 +17,6 @@ module.exports = {
         }
     },
     addRecipe: async (req, res) => {
-        console.log(req.session.user);
         if(!req.session.user) {
             return res.status(400).send(req.session.user);
         } else {

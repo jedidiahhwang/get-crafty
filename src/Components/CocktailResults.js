@@ -84,23 +84,10 @@ const CocktailResults = (props) => {
 
                 setIngredients(drinkIngredients);
                 setMeasurements(drinkMeasurements);
-                // setData({
-                //     idDrink,
-                //     name,
-                //     ingredients,
-                //     instructions
-                // });
 
                 setTimeout(() => {
                     setStatus("inline");
                     console.log("Image displayed.");
-                    const recipeObj = {
-                        idDrink: res.data.drinks[0].idDrink,
-                        name,
-                        ingredients,
-                        instructions
-                    };
-    
                 }, 1000)
             })
             .catch((err) => {
@@ -115,19 +102,13 @@ const CocktailResults = (props) => {
 
     const addDrink = () => {
         if(user.email) {
-            // console.log(idDrink);
-            // console.log(name);
-            // console.log(ingredients);
-            // console.log(instructions);
-
             const drinkObj = {
                 idDrink,
                 name,
                 ingredients,
-                instructions
+                instructions,
+                image
             };
-
-            console.log(drinkObj);
 
             axios.post("/drinks/recipe", drinkObj)
                 .then((res) => {

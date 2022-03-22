@@ -11,7 +11,8 @@ const userSchema = new mongoose.Schema({
             idDrink: Number,
             name: String,
             ingredients: [],
-            instructions: String
+            instructions: String,
+            image: String
         }
     ]
 });
