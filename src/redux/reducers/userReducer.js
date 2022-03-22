@@ -20,6 +20,8 @@ const initialState = {
     isLoggedIn: false
 };
 
+const recipesInitialState = [];
+
 // Set action constants.
 const LOGIN_USER = "LOGIN_USER";
 const LOGOUT = "LOGOUT";
@@ -36,10 +38,14 @@ export default function reducer(state = initialState, action) {
     switch(action.type) { // What is the type of action?
         case "login":
             const email = action.payload; // What is the value attached to the action?
-            const drinks = action.drinks;
-            return {email, isLoggedIn: true, drinks};
+            const recipes = action.recipes;
+            return {email, isLoggedIn: true, recipes};
         case "logout":
             return initialState;
+        case "add":
+            const drink = action.payload;
+            recipesInitialState.push(drink);
+            return recipesInitialState;
         default:
             return state;
     };

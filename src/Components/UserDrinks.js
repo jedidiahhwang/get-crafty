@@ -14,6 +14,7 @@ const UserDrinks = () => {
     const {isShowing, toggle} = UseDrinkModal();
 
     const user = useSelector((state) => state.user);
+    const drinks = useSelector((state) => state.drinks);
 
     console.log(user);
 
@@ -26,7 +27,7 @@ const UserDrinks = () => {
             .catch((err) => {
                 console.log(err.response);
             });
-    }, [])
+    }, [drinks])
 
     return (
         <div id="user-drinks-container">

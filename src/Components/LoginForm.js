@@ -26,6 +26,7 @@ const LoginForm = (props) => {
         axios
             .post("/auth/login", {email, password})
             .then((res) => {
+                console.log(res.data);
                 setCurrentUser(res.data);
                 login(res.data.email, res.data.recipes);
                 console.log("Logged in");

@@ -1,11 +1,11 @@
 // Set the necessary action creators. They just dispatch actions.
 
-export const login = (email, drinks) => {
+export const login = (email, recipes) => {
     return (dispatch) => {
         dispatch({
             type: "login",
             payload: email,
-            drinks
+            recipes
         })
     }
 };
@@ -17,3 +17,12 @@ export const logout = () => {
         });
     };
 };
+
+export const add = (drink) => {
+    return (dispatch) => {
+        dispatch({
+            type: "add",
+            payload: drink
+        })
+    }
+}

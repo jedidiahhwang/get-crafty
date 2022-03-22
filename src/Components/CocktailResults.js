@@ -1,6 +1,8 @@
 import React, {useEffect, useState, Suspense} from "react";
 import axios from "axios";
-import {useSelector} from "react-redux";
+import {useSelector, useDispatch} from "react-redux";
+import {bindActionCreators} from "redux";
+import {actionCreators} from "../redux/actionCreatorExport.js";
 
 import "../SASS/components/_cocktailresults.scss";
 import loadingGif from "../images/pouring.gif";
@@ -19,6 +21,9 @@ const CocktailResults = (props) => {
     const [status, setStatus] = useState("none");
 
     const user = useSelector((state) => state.user);
+    const dispatch = useDispatch();
+
+    const {add} = bindActionCreators(actionCreators, dispatch);
     console.log(user);
 
     // Use a useEffect() method to send API request and assign hooks.
@@ -109,7 +114,9 @@ const CocktailResults = (props) => {
                 instructions,
                 image
             };
-
+            
+            add(drinkObj);
+            
             axios.post("/drinks/recipe", drinkObj)
                 .then((res) => {
                     console.log(res.data);

@@ -15,7 +15,7 @@ const persistConfig = {
 // Combine the reducers to use them in conjunction.
 // Even though we are currently using one reducer, this sets up potential for mroe in the future.
 const reducers = combineReducers({
-    user: userReducer, // Reducers and their corresponding actions to make key-value pairs.
+    user: userReducer // Reducers and their corresponding actions to make key-value pairs.
 });
 
 const persistedReducer = persistReducer(persistConfig, reducers);
