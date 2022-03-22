@@ -27,7 +27,7 @@ const LoginForm = (props) => {
             .post("/auth/login", {email, password})
             .then((res) => {
                 setCurrentUser(res.data);
-                login(res.data.email);
+                login(res.data.email, res.data.recipes);
                 console.log("Logged in");
                 navigate("/userpage");
             })

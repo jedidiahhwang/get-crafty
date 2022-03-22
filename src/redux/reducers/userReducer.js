@@ -36,7 +36,8 @@ export default function reducer(state = initialState, action) {
     switch(action.type) { // What is the type of action?
         case "login":
             const email = action.payload; // What is the value attached to the action?
-            return {email, isLoggedIn: true};
+            const drinks = action.drinks;
+            return {email, isLoggedIn: true, drinks};
         case "logout":
             return initialState;
         default:
