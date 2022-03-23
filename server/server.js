@@ -14,9 +14,12 @@ app.use(express.json());
 
 app.use(
   session({
-    resave: false, // Forces the session to be saved back to the session store, even if the session was never modified during the request.
-    saveUninitialized: false, // Forces a session that is "uninitialized" to be saved to the store. False is useful when you need to require permission before setting a cookie.
+    resave: true, // Forces the session to be saved back to the session store, even if the session was never modified during the request.
+    saveUninitialized: true, // Forces a session that is "uninitialized" to be saved to the store. False is useful when you need to require permission before setting a cookie.
     secret: "demoSecret", // Kind of a hash for verifying cookie sessions.
+    cookie: {
+      expires: 20 * 1000
+    }
   })
 );
 

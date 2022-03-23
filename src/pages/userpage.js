@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 
+import Header from "../Components/Header.js";
 import UserDrinks from "../Components/UserDrinks.js";
 
 const UserPage = () => {
@@ -7,7 +8,7 @@ const UserPage = () => {
 
     return (
         <div>
-            <h1>YAY IT WORKED</h1>
+            <Header />
             <UserDrinks />
         </div>
     )

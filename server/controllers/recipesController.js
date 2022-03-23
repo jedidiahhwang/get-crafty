@@ -26,6 +26,14 @@ module.exports = {
             currentUser.recipes.push(req.body); // Assuming the data is saved on body.
             currentUser.save();
 
+            req.session.user = currentUser;
+
+            req.session.save((err) => {
+                req.session.reload((err) => {
+
+                })
+            });
+
             return res.status(200).send(currentUser);
         }
     },
