@@ -14,15 +14,12 @@ import CocktailResults from "../CocktailResults.js";
 
 import "../../SASS/components/_addDrinkModal.scss";
 
-const AddDrinkModal = ({isShowing, toggle}) => {
+const AddDrinkModal = ({isShowing, toggle, handleUserChange}) => {
     const [selectionState, setSelectionState] = useState("");
-
-    const user = useSelector((state) => state.user);
+    const [user, setUser] = useState();
 
     const handleClick = (event) => {
         event.preventDefault();
-        console.log("Click hit")
-        console.log(event.target);
 
         switch (event.target.id) {
             case "random-button":
@@ -45,6 +42,14 @@ const AddDrinkModal = ({isShowing, toggle}) => {
         };
     }
 
+    const handleSetUser = (data) => {
+        setUser(data);
+        console.log(data);
+        handleUserChange(data);
+    };
+
+
+
 
     if(isShowing) {
         return (
@@ -53,7 +58,7 @@ const AddDrinkModal = ({isShowing, toggle}) => {
                     <div className="modal">
                         {
                             selectionState === "random" ? 
-                            <CocktailResults />
+                            <CocktailResults setUser={handleSetUser}/>
                             :
                             <div className="modal-content">
                                 <h4 className="modal-title">How Do You Want to Make Your Drink?</h4>

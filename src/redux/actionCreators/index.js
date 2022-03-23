@@ -17,12 +17,3 @@ export const logout = () => {
         });
     };
 };
-
-export const add = (drink) => {
-    return (dispatch) => {
-        dispatch({
-            type: "add",
-            payload: drink
-        })
-    }
-}

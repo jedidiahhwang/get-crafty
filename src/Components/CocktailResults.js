@@ -21,10 +21,6 @@ const CocktailResults = (props) => {
     const [status, setStatus] = useState("none");
 
     const user = useSelector((state) => state.user);
-    const dispatch = useDispatch();
-
-    const {add} = bindActionCreators(actionCreators, dispatch);
-    console.log(user);
 
     // Use a useEffect() method to send API request and assign hooks.
     useEffect(() => {
@@ -105,6 +101,7 @@ const CocktailResults = (props) => {
         props.onExit();
     };
 
+    
     const addDrink = () => {
         if(user.email) {
             const drinkObj = {
@@ -115,22 +112,20 @@ const CocktailResults = (props) => {
                 image
             };
             
-            add(drinkObj);
-            
             axios.post("/drinks/recipe", drinkObj)
-                .then((res) => {
-                    console.log(res.data);
-                    console.log("Drink successfully added");
-                })
-                .catch((err) => {
-                    console.log(err);
-                    console.log(err.response);
-                });
+            .then((res) => {
+                console.log(res.data);
+                props.setUser(res.data);
+                console.log("Drink successfully added");
+            })
+            .catch((err) => {
+                console.log(err);
+                console.log(err.response);
+            });
         } else {
             alert("You must be logged in to save drinks");
         }
     }
-
 
     return (
         <div id="cocktail-result-container">

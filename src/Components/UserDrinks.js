@@ -10,13 +10,9 @@ import "../SASS/components/_userdrinks.scss";
 
 const UserDrinks = () => {
     const [userDrinks, setUserDrinks] = useState([]);
+    const [user, setUser] = useState();
 
     const {isShowing, toggle} = UseDrinkModal();
-
-    const user = useSelector((state) => state.user);
-    const drinks = useSelector((state) => state.drinks);
-
-    console.log(user);
 
     useEffect(() => {
         axios.get("/drinks/recipe")
@@ -27,7 +23,14 @@ const UserDrinks = () => {
             .catch((err) => {
                 console.log(err.response);
             });
-    }, [drinks])
+    }, []);
+
+    const handleUserChange = (incomingUser) => {
+        let updatedUser = {...incomingUser};
+        setUser(updatedUser);
+        setUserDrinks(updatedUser.recipes)
+        console.log(incomingUser);
+    }
 
     return (
         <div id="user-drinks-container">
@@ -39,7 +42,7 @@ const UserDrinks = () => {
                         <line x1="5" y1="12" x2="19" y2="12"></line>
                     </svg>
                 </button>
-                <AddDrinkModal isShowing={isShowing} toggle={toggle} />
+                <AddDrinkModal handleUserChange={handleUserChange} isShowing={isShowing} toggle={toggle} />
                 <>
                 {userDrinks.length > 0 ? 
                         userDrinks.map(function(element, index) {
