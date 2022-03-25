@@ -1,0 +1,17 @@
+.drink-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10vh;
+    width: 10vh;
+
+    .drink-card-overlay {
+        height: 100%;
+        width: 100%;
+
+        #card-image {
+            height: 100%;
+            width: 100%;
+        }
+    }
+}

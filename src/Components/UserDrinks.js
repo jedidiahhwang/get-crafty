@@ -11,6 +11,7 @@ import "../SASS/components/_userdrinks.scss";
 const UserDrinks = () => {
     const [userDrinks, setUserDrinks] = useState([]);
     const [user, setUser] = useState();
+    const [hover, setHover] = useState(false);
 
     const {isShowing, toggle} = UseDrinkModal();
 
@@ -32,6 +33,11 @@ const UserDrinks = () => {
         console.log(incomingUser);
     }
 
+    const handleMouseEnter = () => {
+        setHover(true);
+        console.log("UserDrinks got state");
+    };
+
     return (
         <div id="user-drinks-container">
             <section id="user-drinks">
@@ -46,7 +52,7 @@ const UserDrinks = () => {
                 <>
                 {userDrinks.length > 0 ? 
                         userDrinks.map(function(element, index) {
-                            return <DrinkCardModal image={element.image} key={index} />
+                            return <DrinkCardModal image={element.image} name={element.name} key={index}/>
                         })
                     : null}
                 </>
