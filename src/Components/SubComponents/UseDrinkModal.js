@@ -13,6 +13,7 @@ const UseDrinkmodal = () => {
 
     const toggle = () => {
         setIsShowing(!isShowing);
+        console.log("Toggled view");
     }
 
     // Returning the following will let the component access those values/functions.

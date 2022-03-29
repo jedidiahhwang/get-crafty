@@ -1,44 +1,28 @@
 import React, {useState} from "react";
-import {useSelector} from "react-redux";
+import ReactDOM from "react-dom";
 
-import "../../SASS/components/_drinkCardModal.scss";
+const DrinkCardModal = ({isShowing, toggle}) => {
 
-const DrinkCardModal = (props, {isShowing, toggle}) => {
-    const [displayState, setDisplayState] = useState("hidden");
-
-    const user = useSelector((state) => state.user);
+    const handleExit = (event) => {
+        event.preventDefault();
+        toggle();
+    }
     
-    const displayOverlay = (event) => {
-        event.stopPropagation();
-        setDisplayState("inline");
-        console.log("Currently hovered");
-    };
-
-    const removeOverlay = (event) => {
-        event.stopPropagation();
-        setDisplayState("hidden");
-        console.log("Removed hover");
-    };
-    
-    return (
-        <>
-            <button class="drink-card" onMouseEnter={displayOverlay} onMouseLeave={removeOverlay}>
-                {
-                    displayState === "hidden" ?
-                        <div className="drink-card-overlay">
-                            <img 
-                                id="card-image"
-                                src={props.image}
-                            />
-                        </div>
-                    :
-                        <div className="drink-card-overlay">
-                            <h3>{props.name}</h3>
-                        </div>
-                }
-            </button>
-        </>
-    )
+    if(isShowing) {
+        return (
+            ReactDOM.createPortal(
+                <>
+                    <div className="modal">
+                        <h1>Hello There</h1>
+                    </div>
+                </>, document.body
+            )
+        )
+    } else {
+        return (
+            null
+        );
+    }
 }
 
 export default DrinkCardModal

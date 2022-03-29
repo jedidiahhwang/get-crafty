@@ -5,9 +5,14 @@
     height: 10vh;
     width: 10vh;
 
+    #filter {
+        background: linear-gradient(0deg, #00000088, 30%, #ffffff44, 100%);
+    }
+
     .drink-card-overlay {
         height: 100%;
         width: 100%;
+
 
         #card-image {
             height: 100%;
