@@ -13,14 +13,12 @@ const DrinkCardButton = (props) => {
 
     const user = useSelector((state) => state.user);
     
-    const displayOverlay = (event) => {
-        event.stopPropagation();
+    const displayOverlay = () => {
         setDisplayState("inline");
         console.log("Currently hovered");
     };
 
-    const removeOverlay = (event) => {
-        event.stopPropagation();
+    const removeOverlay = () => {
         setDisplayState("hidden");
         console.log("Removed hover");
     };
@@ -41,7 +39,7 @@ const DrinkCardButton = (props) => {
                             <h3>{props.name}</h3>
                         </div>
                 }
-                <AddDrinkModal isShowing={isShowing} toggle={toggle} />
+                <AddDrinkModal isShowing={isShowing} toggle={toggle} handleDisplayChange={removeOverlay}/>
             </button>
         
     )

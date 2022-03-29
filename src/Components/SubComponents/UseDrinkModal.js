@@ -10,6 +10,7 @@ import {useState} from "react";
 
 const UseDrinkmodal = () => {
     const [isShowing, setIsShowing] = useState(false);
+    const [displayState, setDisplayState] = useState("hidden");
 
     const toggle = () => {
         setIsShowing(!isShowing);

@@ -7,23 +7,9 @@ import AddDrinkModal from "./AddDrinkModal.js";
 import "../../SASS/components/_drinkCardModal.scss";
 
 const AddCardButton = (props) => {
-    const [displayState, setDisplayState] = useState("hidden");
-
     const {isShowing, toggle} = UseDrinkModal();
 
     const user = useSelector((state) => state.user);
-    
-    const displayOverlay = (event) => {
-        event.stopPropagation();
-        setDisplayState("inline");
-        console.log("Currently hovered");
-    };
-
-    const removeOverlay = (event) => {
-        event.stopPropagation();
-        setDisplayState("hidden");
-        console.log("Removed hover");
-    };
     
     return (
         <>

@@ -14,7 +14,7 @@ import CocktailResults from "../CocktailResults.js";
 
 import "../../SASS/components/_addDrinkModal.scss";
 
-const AddDrinkModal = ({isShowing, toggle, handleUserChange}) => {
+const AddDrinkModal = ({isShowing, toggle, handleUserChange, handleDisplayChange}) => {
     const [selectionState, setSelectionState] = useState("");
     const [user, setUser] = useState();
 
@@ -37,6 +37,7 @@ const AddDrinkModal = ({isShowing, toggle, handleUserChange}) => {
             case "exit-button":
                 console.log("selectionState is empty");
                 setSelectionState("");
+                handleDisplayChange();
                 toggle();
                 break;
         };
