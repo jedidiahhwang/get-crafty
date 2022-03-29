@@ -37,7 +37,7 @@ const AddDrinkModal = ({isShowing, toggle, handleUserChange, handleDisplayChange
             case "exit-button":
                 console.log("selectionState is empty");
                 setSelectionState("");
-                handleDisplayChange();
+                if(handleDisplayChange) handleDisplayChange();
                 toggle();
                 break;
         };
